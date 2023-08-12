@@ -7,7 +7,7 @@ Indev version of the Marble It Up! Ultra level kit for Unity.
 # TODO
 | Status | Task     | Description                                             |
 | :---: | :---      | :---                                                    |
-| ❌ | Materials   | finalize textures and materials such as tiles and trims |
+| 🚧 | Materials   | finalize textures and materials such as tiles and trims |
 | ❌ | Models      | finalize model prefabs such as rocks and gears |
 | ❌ | Shaders     | remove any shaders we cannot or do not want to ship |
 | ❌ | Scripts     | remove or simplify gameplay scripts we do not want to ship |
