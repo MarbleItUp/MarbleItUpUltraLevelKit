@@ -1,0 +1,10 @@
+newmtl Default-Material
+Kd 1 1 1
+d 1
+
+newmtl SignFrames
+map_Kd SignFramesDif.png
+map_Pm SignFrames_Metal.tga
+Kd 1 1 1
+d 1
+

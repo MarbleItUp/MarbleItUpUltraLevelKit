@@ -1,0 +1,166 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6615803592434528515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6615803592434528513}
+  - component: {fileID: 6615803592434528514}
+  m_Layer: 0
+  m_Name: MTA_Arrows_A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6615803592434528513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6615803592434528515}
+  m_LocalRotation: {x: -0.95723903, y: 0.0000008535524, z: 0.2892983, w: 0.000002824272}
+  m_LocalPosition: {x: 0.04, y: 57.06, z: -69.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -180, y: 33.63199, z: 0}
+--- !u!114 &6615803592434528514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6615803592434528515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3092ea9c57c07e74b83945a5ed657a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisplayMesh: {fileID: 100000, guid: 47c50f6728da6cb48a8abe4ce8e352ac, type: 3}
+  NumberToSpawn: 6
+  SpawnOnGrid: 0
+  GridSize: {x: 1, y: 1, z: 1}
+  EnableGridMotionLock: 0
+  LockBoxMin: {x: 0, y: 0, z: 0}
+  LockBoxMax: {x: 0, y: 0, z: 0}
+  GridSpacing: {x: 1, y: 1, z: 1}
+  OverrideMaterial: {fileID: 2100000, guid: 463332e7b5f8b5f4e8445aae9a5306ce, type: 2}
+  SpawnWithZeroTime: 0
+  CycleTime: 2
+  SpeedVariance: 0
+  SpeedOffset: 0
+  Location:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DirectionOfMotion: {x: 24, y: 4, z: 12}
+  Rotation:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AxisOfRotation: {x: 0, y: 1, z: 0}
+  RotationScale: 360
+  Scale:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ScaleFactor: {x: 0.5, y: 0.5, z: 0.5}
+  Color:
+    serializedVersion: 2
+    key0: {r: 1, g: 0.23137255, b: 0, a: 0}
+    key1: {r: 1, g: 0.23137255, b: 0, a: 0.78431374}
+    key2: {r: 1, g: 0.06474822, b: 0, a: 0.78431374}
+    key3: {r: 1, g: 0.06474822, b: 0, a: 0}
+    key4: {r: 1, g: 0.06474822, b: 0, a: 0}
+    key5: {r: 1, g: 0.06474822, b: 0, a: 0}
+    key6: {r: 1, g: 0, b: 0.47586155, a: 0}
+    key7: {r: 1, g: 0, b: 0.47586155, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 57247
+    ctime3: 57247
+    ctime4: 57247
+    ctime5: 58789
+    ctime6: 62451
+    ctime7: 62451
+    atime0: 0
+    atime1: 7132
+    atime2: 57440
+    atime3: 65535
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 4
+  fadeDistance: 0
+  fadeTime: 2.5
+  alpha: 1

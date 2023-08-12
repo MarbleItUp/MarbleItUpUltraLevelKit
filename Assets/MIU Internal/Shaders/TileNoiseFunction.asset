@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b2425a2284af743826c689403a4924, type: 3}
+  m_Name: TileNoiseFunction
+  m_EditorClassIdentifier: 
+  m_functionInfo: "// Made with Amplify Shader Editor\n// Available at the Unity Asset
+    Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=14501\n1927;87;1906;1044;2652.584;1519.995;2.138365;True;True\nNode;AmplifyShaderEditor.TexelSizeNode;14;-1416.476,-848.0604;Float;False;-1;1;0;SAMPLER2D;sampler0108;False;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.SimpleAddOpNode;23;-861.3806,-454.9767;Float;False;2;2;0;FLOAT2;0,0;False;1;FLOAT2;0,0;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.WorldToObjectTransfNode;36;-1579.531,-572.0427;Float;False;1;0;FLOAT4;0,0,0,1;False;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;22;-540.4376,-407.0759;Float;True;2;2;0;FLOAT2;0,0;False;1;FLOAT2;0,0;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.TFHCPixelate;12;-5.295603,-428.5278;Float;False;3;0;FLOAT2;0,0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.FunctionInput;16;-1651.161,-1043.811;Float;False;Noise
+    Texture;9;0;False;1;0;SAMPLER2D;;False;1;SAMPLER2D;0\nNode;AmplifyShaderEditor.SwizzleNode;25;-1288.955,-517.7852;Float;False;FLOAT2;0;2;2;3;1;0;FLOAT4;0,0,0,0;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.FunctionInput;15;-1453.272,-206.066;Float;False;Tile
+    Texture;9;1;False;1;0;SAMPLER2D;0,0;False;1;SAMPLER2D;0\nNode;AmplifyShaderEditor.SamplerNode;13;406.616,-458.1372;Float;True;Property;_TextureSample0;Texture
+    Sample 0;1;0;Create;True;0;None;55a762705de8d8f4b8fe2ef25ab72ff6;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.TextureCoordinatesNode;17;-1183.037,-338.5315;Float;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.FloorOpNode;44;-1082.056,-484.5401;Float;False;1;0;FLOAT2;0,0;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.SwizzleNode;51;-984.9169,-751.2593;Float;False;FLOAT2;0;1;2;3;1;0;FLOAT4;0,0,0,0;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.SimpleAddOpNode;52;-223.2874,-334.1325;Float;False;2;2;0;FLOAT2;0,0;False;1;FLOAT2;0.5,0.5;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.FunctionOutput;0;989.2998,-452.4;Float;False;True;Noise
+    RGBA;0;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0\nWireConnection;14;0;16;0\nWireConnection;23;0;44;0\nWireConnection;23;1;17;0\nWireConnection;22;0;23;0\nWireConnection;22;1;51;0\nWireConnection;12;0;52;0\nWireConnection;12;1;14;3\nWireConnection;12;2;14;4\nWireConnection;25;0;36;0\nWireConnection;13;0;16;0\nWireConnection;13;1;12;0\nWireConnection;17;2;15;0\nWireConnection;44;0;25;0\nWireConnection;51;0;14;0\nWireConnection;52;0;22;0\nWireConnection;0;0;13;0\nASEEND*/\n//CHKSM=E4E54EA4374F6D3E8FC898DEC2AF2B657DC0AF4A"
+  m_functionName: 
+  m_description: 
+  m_additionalIncludes:
+    m_additionalIncludes: []
+    m_outsideIncludes: []
+  m_additionalPragmas:
+    m_additionalPragmas: []
+    m_outsidePragmas: []
+  m_nodeCategory: 3
+  m_customNodeCategory: 
+  m_previewPosition: 0

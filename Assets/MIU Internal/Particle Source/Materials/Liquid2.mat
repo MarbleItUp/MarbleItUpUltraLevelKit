@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Liquid2
+  m_Shader: {fileID: 4800000, guid: 1f9340df979b8a54e9ceabb729e8b8fe, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Texture0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 6c4b657073493f247a21260750f21c26, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: 76b22d2c566471f4e819073b7c52f43d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample2:
+        m_Texture: {fileID: 2800000, guid: 0981a77568c1d234b9f581dbc27ab63b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Cutoff: 0.5
+    - _Float0: 0.076
+    - _Float2: 2
+    - _Float6: -0.2
+    - _Limit: -0.5
+    - _NoiseScale: 0.4
+    - _Oscillati: 2
+    - _Oscillation: 0.6
+    - _TestProp: 0.3
+    - _TexAnimSpeed: -2
+    - _TimeScale: 0.05
+    - _TransAmbient: 0.2
+    - _TransDirect: 1
+    - _TransNormalDistortion: 0.1
+    - _TransScattering: 2
+    - _TransShadow: 0.9
+    - _Translucency: 1
+    - __dirty: 0
+    m_Colors:
+    - _Base: {r: 1, g: 0.34117648, b: 0.33725488, a: 0}
+    - _BaseTint: {r: 0.36010763, g: 0.33725458, b: 1, a: 1}
+    - _BottomColor: {r: 0.21107265, g: 0.4461578, b: 0.8970588, a: 0}
+    - _Color0: {r: 0, g: 0.34269667, b: 1, a: 0}
+    - _MidColor: {r: 0.64117646, g: 0.5735295, b: 1, a: 0}
+    - _Tint: {r: 0.36010796, g: 0.33725488, b: 1, a: 0}
+    - _TintColor: {r: 0.7273834, g: 0.69117635, b: 1, a: 1}
+    - _TopColor: {r: 0.37499997, g: 0.6379313, b: 1, a: 0}
