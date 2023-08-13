@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: RaceTrim01Emissive
   m_Shader: {fileID: 4800000, guid: a646abb45c6b2a3479d0be6ce4bd7a6d, type: 3}
-  m_ShaderKeywords: _DETAIL_MULX2 _EMISSION _METALLICGLOSSMAP _NORMALMAP
+  m_ShaderKeywords: _EMISSION _METALLICGLOSSMAP
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -75,3 +75,4 @@ Material:
     m_Colors:
     - _Color: {r: 0.5722318, g: 0.7212564, b: 0.9264706, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

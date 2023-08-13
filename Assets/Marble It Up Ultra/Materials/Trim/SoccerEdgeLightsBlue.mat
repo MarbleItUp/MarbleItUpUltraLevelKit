@@ -4,9 +4,10 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: ElevatorEdgeLights01
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SoccerEdgeLightsBlue
   m_Shader: {fileID: 4800000, guid: fe8abf4c391b98542ac860739e8061a1, type: 3}
   m_ShaderKeywords: _EMISSION _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 2
@@ -19,11 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: d2c1c27f777f43e4fae7ae5cc1b84529, type: 3}
+        m_Texture: {fileID: 2800000, guid: 896152cf92226f74a9d5d9642bc6d685, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo_:
-        m_Texture: {fileID: 2800000, guid: d2c1c27f777f43e4fae7ae5cc1b84529, type: 3}
+        m_Texture: {fileID: 2800000, guid: 04a7016ae3a6749459bc207fd2578c8d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -47,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emissive:
-        m_Texture: {fileID: 2800000, guid: 518dff4914b0a804abc517daf4f1783b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 896152cf92226f74a9d5d9642bc6d685, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissiveMask:
@@ -59,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metal:
-        m_Texture: {fileID: 2800000, guid: 255a57ee34578b042a5d8b20447e8a82, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2a2cd24b40462684f877989d2f26315d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -67,7 +68,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 08a9273cfdb6da1448c8a777ca71588f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 47faa759e5688314ab611c4429dec000, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -94,8 +95,8 @@ Material:
     - _HueMax: 1
     - _HueMin: 0.1
     - _Intensity: 4
-    - _IntensityMax: 1
-    - _IntensityMin: 0.25
+    - _IntensityMax: 2
+    - _IntensityMin: 0.75
     - _Metallic: 0.4
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -105,7 +106,7 @@ Material:
     - _Saturation: 1
     - _Scale: 100
     - _Shininess: 0.2
-    - _Smoothness: 1
+    - _Smoothness: 0.9
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 3
@@ -119,3 +120,4 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 0.903, g: 0.9039999, b: 0.896, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
