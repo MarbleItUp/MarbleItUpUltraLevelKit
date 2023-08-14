@@ -3,3 +3,5 @@ some Trim materials (Trim006) use Fill normal maps and MetalTile normal maps -- 
 do we want to ship the "MIU/ElevatorPulseLights" shader? looks nice on elevator trim
 
 surface.crush is a WIP
+
+test each skybox to see which ones do and don't export!
