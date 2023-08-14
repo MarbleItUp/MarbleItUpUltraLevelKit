@@ -1,3 +1,5 @@
 some Trim materials (Trim006) use Fill normal maps and MetalTile normal maps -- confirm if this is the case in-game
 
 do we want to ship the "MIU/ElevatorPulseLights" shader? looks nice on elevator trim
+
+surface.crush is a WIP
