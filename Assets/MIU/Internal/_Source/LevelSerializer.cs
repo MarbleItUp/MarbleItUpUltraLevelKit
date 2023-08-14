@@ -278,7 +278,7 @@ public class LevelSerializer
             return lo;
 
 
-        SerializeProBuilder(go, lo);
+        // SerializeProBuilder(go, lo);
 
         SerializeMesh(go, lo, rejectStatic);
 
@@ -674,95 +674,95 @@ public class LevelSerializer
     }
 
 
-    void SerializeProBuilder(GameObject go, LevelObject lo)
-    {
-        var pbm = go.GetComponent<UnityEngine.ProBuilder.ProBuilderMesh>();
-        if(!pbm)
-            return;
+    // void SerializeProBuilder(GameObject go, LevelObject lo)
+    // {
+    //     var pbm = go.GetComponent<UnityEngine.ProBuilder.ProBuilderMesh>();
+    //     if(!pbm)
+    //         return;
 
-        var sh = new SerializerHelper();
-        var outBytes = sh.Stream = new ByteStream();
+    //     var sh = new SerializerHelper();
+    //     var outBytes = sh.Stream = new ByteStream();
         
-        outBytes.WriteInt32(pbm.faces.Count);
-        foreach(var f in pbm.faces)
-        {
-            outBytes.WriteInt32(f.indexes.Count);
-            foreach(var i in f.indexes)
-                outBytes.WriteInt32(i);
+    //     outBytes.WriteInt32(pbm.faces.Count);
+    //     foreach(var f in pbm.faces)
+    //     {
+    //         outBytes.WriteInt32(f.indexes.Count);
+    //         foreach(var i in f.indexes)
+    //             outBytes.WriteInt32(i);
 
-            outBytes.WriteInt32(f.smoothingGroup);
+    //         outBytes.WriteInt32(f.smoothingGroup);
 
-            var auw = f.uv;
-            outBytes.WriteBoolean(auw.useWorldSpace);
-            outBytes.WriteBoolean(auw.flipU);
-            outBytes.WriteBoolean(auw.flipV);
-            outBytes.WriteBoolean(auw.swapUV);
-            outBytes.WriteInt32((int)auw.fill);
-            outBytes.WriteVector2(auw.scale);
-            outBytes.WriteVector2(auw.offset);
-            outBytes.WriteSingle(auw.rotation);
-            outBytes.WriteInt32((int)auw.anchor);
+    //         var auw = f.uv;
+    //         outBytes.WriteBoolean(auw.useWorldSpace);
+    //         outBytes.WriteBoolean(auw.flipU);
+    //         outBytes.WriteBoolean(auw.flipV);
+    //         outBytes.WriteBoolean(auw.swapUV);
+    //         outBytes.WriteInt32((int)auw.fill);
+    //         outBytes.WriteVector2(auw.scale);
+    //         outBytes.WriteVector2(auw.offset);
+    //         outBytes.WriteSingle(auw.rotation);
+    //         outBytes.WriteInt32((int)auw.anchor);
 
-            outBytes.WriteInt32(f.submeshIndex);
+    //         outBytes.WriteInt32(f.submeshIndex);
 
-            outBytes.WriteBoolean(f.manualUV);
+    //         outBytes.WriteBoolean(f.manualUV);
 
-            outBytes.WriteInt32(f.elementGroup);
-            outBytes.WriteInt32(f.textureGroup);
-        }
+    //         outBytes.WriteInt32(f.elementGroup);
+    //         outBytes.WriteInt32(f.textureGroup);
+    //     }
 
-        outBytes.WriteInt32(pbm.sharedVertices.Count);
-        foreach(var v in pbm.sharedVertices)
-        {
-            outBytes.WriteInt32(v.Count);
-            foreach(var vi in v)
-                outBytes.WriteInt32(vi);
-        }
+    //     outBytes.WriteInt32(pbm.sharedVertices.Count);
+    //     foreach(var v in pbm.sharedVertices)
+    //     {
+    //         outBytes.WriteInt32(v.Count);
+    //         foreach(var vi in v)
+    //             outBytes.WriteInt32(vi);
+    //     }
 
-        outBytes.WriteInt32(pbm.sharedTextures.Length);
-        foreach (var v in pbm.sharedTextures)
-        {
-            outBytes.WriteInt32(v.Count);
-            foreach (var vi in v)
-                outBytes.WriteInt32(vi);
-        }
+    //     outBytes.WriteInt32(pbm.sharedTextures.Length);
+    //     foreach (var v in pbm.sharedTextures)
+    //     {
+    //         outBytes.WriteInt32(v.Count);
+    //         foreach (var vi in v)
+    //             outBytes.WriteInt32(vi);
+    //     }
 
-        outBytes.WriteInt32(pbm.positions.Count);
-        foreach(var p in pbm.positions)
-            outBytes.WriteVector3(p);
+    //     outBytes.WriteInt32(pbm.positions.Count);
+    //     foreach(var p in pbm.positions)
+    //         outBytes.WriteVector3(p);
 
-        outBytes.WriteInt32(pbm.textures.Count);
-        foreach (var p in pbm.textures)
-            outBytes.WriteVector2(p);
+    //     outBytes.WriteInt32(pbm.textures.Count);
+    //     foreach (var p in pbm.textures)
+    //         outBytes.WriteVector2(p);
 
-        var tex2List = new List<Vector4>();
-        pbm.GetUVs(1, tex2List);
-        outBytes.WriteInt32(tex2List.Count);
-        foreach (var p in tex2List)
-            outBytes.WriteVector2(new Vector2(p.x, p.y));
+    //     var tex2List = new List<Vector4>();
+    //     pbm.GetUVs(1, tex2List);
+    //     outBytes.WriteInt32(tex2List.Count);
+    //     foreach (var p in tex2List)
+    //         outBytes.WriteVector2(new Vector2(p.x, p.y));
 
-        outBytes.WriteInt32(pbm.tangents.Count);
-        foreach(var p in pbm.tangents)
-            outBytes.WriteVector4(p);
+    //     outBytes.WriteInt32(pbm.tangents.Count);
+    //     foreach(var p in pbm.tangents)
+    //         outBytes.WriteVector4(p);
 
-        outBytes.WriteInt32(pbm.colors.Count);
-        foreach (var p in pbm.colors)
-            outBytes.WriteVector4(new Vector4(p.r, p.g, p.b, p.a));
+    //     outBytes.WriteInt32(pbm.colors.Count);
+    //     foreach (var p in pbm.colors)
+    //         outBytes.WriteVector4(new Vector4(p.r, p.g, p.b, p.a));
 
-        outBytes.WriteBoolean(pbm.userCollisions);
+    //     outBytes.WriteBoolean(pbm.userCollisions);
 
-        outBytes.WriteSingle(pbm.unwrapParameters.hardAngle);
-        outBytes.WriteSingle(pbm.unwrapParameters.packMargin);
-        outBytes.WriteSingle(pbm.unwrapParameters.angleError);
-        outBytes.WriteSingle(pbm.unwrapParameters.areaError);
+    //     outBytes.WriteSingle(pbm.unwrapParameters.hardAngle);
+    //     outBytes.WriteSingle(pbm.unwrapParameters.packMargin);
+    //     outBytes.WriteSingle(pbm.unwrapParameters.angleError);
+    //     outBytes.WriteSingle(pbm.unwrapParameters.areaError);
 
 
-        var sb = new SimpleBuffer();
-        sb.Stream = new MemoryStream(outBytes.Buffer, 0, outBytes.Position, true, true);
+    //     var sb = new SimpleBuffer();
+    //     sb.Stream = new MemoryStream(outBytes.Buffer, 0, outBytes.Position, true, true);
         
-        lo.properties[LevelObject.PROBUILDERMESH] = true;
-        lo.properties[LevelObject.PROBUILDERMESH_DATA] = sb;
-    }
+    //     lo.properties[LevelObject.PROBUILDERMESH] = true;
+    //     lo.properties[LevelObject.PROBUILDERMESH_DATA] = sb;
+    // }
 
     void SerializeMesh(GameObject go, LevelObject lo, bool rejectStatic = true)
     {
