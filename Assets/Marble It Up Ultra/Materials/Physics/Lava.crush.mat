@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Lava.crush
-  m_Shader: {fileID: 4800000, guid: a646abb45c6b2a3479d0be6ce4bd7a6d, type: 3}
+  m_Shader: {fileID: 4800000, guid: 70114fbb18ebf62439c5b82b6860673e, type: 3}
   m_ShaderKeywords: _EMISSION _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -53,7 +53,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _DistortTex:
         m_Texture: {fileID: 2800000, guid: 1ae3dd85ebf4d1048942c526bea985e2, type: 3}
-        m_Scale: {x: 0.3, y: 0.3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 2800000, guid: 14046bda54d514c4093301a6a9119554, type: 3}
@@ -84,8 +84,8 @@ Material:
         m_Scale: {x: 0.3, y: 0.3}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 14046bda54d514c4093301a6a9119554, type: 3}
-        m_Scale: {x: 0.25, y: 0.25}
+        m_Texture: {fileID: 2800000, guid: d04b3f78004c5b14bb34c9e2e6062ba7, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskFlaks:
         m_Texture: {fileID: 2800000, guid: 21a6bd9b3f2c90047b38cea2fe37f5bb, type: 3}
@@ -224,7 +224,7 @@ Material:
     - _BaseColor2: {r: 0.035034638, g: 0.08247142, b: 0.39705792, a: 0}
     - _CarColor: {r: 0.08832457, g: 0.07493501, b: 0.46323526, a: 0}
     - _CarPaintColor: {r: 0.088324, g: 0.074934505, b: 0.46323526, a: 0}
-    - _Color: {r: 1, g: 0.6711202, b: 0.13679248, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color1: {r: 0.021626277, g: 0.056079105, b: 0.7352942, a: 0.953}
     - _Color3: {r: 0.035034638, g: 0.08247225, b: 0.39705884, a: 0}
     - _EmissionColor: {r: 1, g: 0.4072403, b: 0.016807375, a: 1}
@@ -234,5 +234,5 @@ Material:
     - _Offset1: {r: 1.2, g: 6.53, b: -6.86, a: 0}
     - _Speed: {r: 0.6, g: 0.4, b: 0, a: 0}
     - _TexSpeed: {r: 1, g: 0, b: 0, a: 0}
-    - _TintColor: {r: 3.0000017, g: 1.0649091, b: 0.35294136, a: 1}
+    - _TintColor: {r: 5.347307, g: 5.347307, b: 5.347307, a: 1}
   m_BuildTextureStacks: []
