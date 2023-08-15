@@ -91,10 +91,8 @@ public class LevelSerializer
 
         if(RenderSettings.skybox != null)
         {
-            int id = 0;
+            int id = 11; // default to Sky001
             int.TryParse(RenderSettings.skybox.name, out id);
-            if (id < 5)
-                id = 11;
             scene.skyboxId = id; 
         }
         
