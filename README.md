@@ -15,7 +15,7 @@ The folder `Marble It Up Ultra` contains assets that are ready to go, and will b
 | Status | Task     | Description                                             |
 | :---: | :---      | :---                                                    |
 | ✅ | Materials   | finalize textures and materials such as tiles and trims |
-| 🚧 | Prefabs     | finalize gameplay prefabs such as checkpoints, gems, and powerups |
+| ✅ | Prefabs     | finalize gameplay prefabs such as checkpoints, gems, and powerups |
 | ❌ | Decorations | finalize decorative prefabs such as rocks, gears, and MTAs |
 | 🚧 | Shaders     | remove any shaders we cannot or do not want to ship |
 | ❌ | Scripts     | remove or simplify gameplay scripts we do not want to ship |
