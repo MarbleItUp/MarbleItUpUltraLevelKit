@@ -280,9 +280,9 @@ public class ObjectCreator : EditorWindow
             {
                 b.Encapsulate(r.bounds);
             }
-            bounds.transform.position = b.center + (Vector3.up*10);
+            bounds.transform.position = b.center /*+ (Vector3.up*10)*/;
             bc.center = Vector3.zero;
-            bc.size = b.size + new Vector3(10, 20, 10);
+            bc.size = b.size + new Vector3(20, 20, 20);
         }       
     }
 
