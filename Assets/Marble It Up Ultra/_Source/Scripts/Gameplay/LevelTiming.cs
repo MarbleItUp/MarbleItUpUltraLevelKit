@@ -5,10 +5,12 @@ using System;
 
 public class LevelTiming : MonoBehaviour {
 
-    [Header("Medal Times")]
+    [Header("Medal Times (seconds)")]
     public float DiamondTime = 15;
     public float GoldTime = 30;
     public float SilverTime = 60;
+
+    [Header("Level Info")]
     public string Author = "";
 
     public string GetTimingString()

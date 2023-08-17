@@ -144,7 +144,9 @@ public class MapExporter : EditorWindow
 
         if(LevelSerializer.failCause.Length == 0)
         {
-            string filePath = "Assets/" + LevelSerializer.GetCurrentSceneLevelId() + "_designer.level";
+            // TODO: allow user to choose export path
+            // string filePath = /* "Assets/" */ "C:/Users/Ryan/AppData/LocalLow/Bad Habit/MarbleItUpUltra/CustomLevels/Test/" + LevelSerializer.GetCurrentSceneLevelId() + ".level";
+            string filePath = "Assets/" + LevelSerializer.GetCurrentSceneLevelId() + ".level";
 
             FileStream file;
             if (!File.Exists(filePath))

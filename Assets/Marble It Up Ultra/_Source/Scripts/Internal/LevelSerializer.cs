@@ -28,6 +28,39 @@ public class LevelSerializer
         return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
     }
 
+    void OptimizeLevelGeometry(GameObject go)
+    {
+        var mfsFound = new List<MeshFilter>();
+        go.GetComponentsInChildren<MeshFilter>(mfsFound);
+
+        foreach (var mf in mfsFound)
+        {
+            // Only combine statically batched geometry.
+            bool isStaticBatch = GameObjectUtility.AreStaticEditorFlagsSet(mf.gameObject, StaticEditorFlags.BatchingStatic);
+            if (isStaticBatch == false)
+                continue;
+
+            if (mf.gameObject.activeInHierarchy == false || mf.gameObject.GetComponent<IgnoreObject>() != null)
+                continue;
+
+            ProxyMeshInfo.MeshTypes type = 0;
+
+            var collider = mf.GetComponent<Collider>();
+            if(collider != null && collider.enabled)
+                type |= ProxyMeshInfo.MeshTypes.IsCollider;
+
+            var renderer = mf.GetComponent<Renderer>();
+            if(renderer != null && renderer.enabled)
+                type |= ProxyMeshInfo.MeshTypes.IsVisual;
+
+            if(type == 0)
+                continue;
+
+            meshManager.AddMeshToProxy(mf, type);
+        }
+
+    }
+
     bool IsGameObjectPrunable(GameObject go)
     {
         // If it's not enabled we can bail immediately.
@@ -521,24 +554,6 @@ public class LevelSerializer
             lo.properties[LevelObject.GEMTRIGGER_THRESHOLD] = gt.Threshold;
         }
 
-        var gsp = go.GetComponent<GemSpawn>();
-        if(gsp != null)
-        {
-            lo.properties[LevelObject.GEMSPAWN] = true;
-			lo.properties[LevelObject.GEMSPAWN_BLUE] = gsp.isBlueGem;
-            lo.properties[LevelObject.GEMSPAWN_GROUPCOUNT] = gsp.GemGroups.Count;
-            if(gsp.GemGroups.Count > 0)
-                for(int i=0; i<gsp.GemGroups.Count; i++)
-                    lo.properties[LevelObject.GEMSPAWN_GROUP + i] = gsp.GemGroups[i];
-        }
-
-        var mps = go.GetComponent<MPSpawn>();
-        if(mps != null)
-        {
-			lo.properties[LevelObject.MPSPAWN] = true;
-			lo.properties[LevelObject.MPSPAWN_TEAM] = mps.TeamSpawn;
-        }
-
         // Backwards compatibility.
         if(go.name == "CheckPoint")
             lo.properties[LevelObject.CHECKPOINT] = true;
@@ -671,6 +686,7 @@ public class LevelSerializer
         return false;
     }
 
+    // MARBLR: don't think we need this, as it's for _designer files and inflates size.
 
     // void SerializeProBuilder(GameObject go, LevelObject lo)
     // {

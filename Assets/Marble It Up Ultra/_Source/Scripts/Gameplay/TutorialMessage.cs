@@ -4,14 +4,13 @@ using UnityEngine;
 public class TutorialMessage : MonoBehaviour
 {
 
+    [Tooltip("The message that will display when the marble is inside the collider volume.")]
     [TextArea]
     public string message = "Hello, World";
 
     [HideInInspector]
     public Sprite graphic = null;
 
-    // When set, only show it once - after that disable.
+    [Tooltip("If true, this message will only display once.")]
     public bool ShowOnce = false;
-
-
 }

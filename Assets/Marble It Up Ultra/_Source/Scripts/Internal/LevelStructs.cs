@@ -151,14 +151,6 @@ namespace MIU
         public const string GEMTRIGGER_COMPARISONMODE = GEMTRIGGER + "_ComparisonMode";
         public const string GEMTRIGGER_THRESHOLD = GEMTRIGGER + "_Threshold";
 
-        public const string GEMSPAWN = "GemSpawn";
-        public const string GEMSPAWN_BLUE = GEMSPAWN + "_Blue";
-        public const string GEMSPAWN_GROUPCOUNT = GEMSPAWN + "_GroupCount";
-        public const string GEMSPAWN_GROUP = GEMSPAWN + "_Group";
-        
-        public const string MPSPAWN = "MPSpawn";
-        public const string MPSPAWN_TEAM = MPSPAWN + "_Team";
-
         public const string PROBUILDERMESH = "ProBuilderMesh";
         public const string PROBUILDERMESH_DATA = PROBUILDERMESH + "_Data";
 

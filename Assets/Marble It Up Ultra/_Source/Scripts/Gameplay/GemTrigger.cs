@@ -12,5 +12,6 @@ public class GemTrigger : MonoBehaviour
     }
 
     public Comparison ComparisonMode;
+    [Tooltip("Moving Platforms with this script attached will only move once this condition is met.")]
     public int Threshold;
 }
