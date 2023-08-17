@@ -122,12 +122,9 @@ public class LevelSerializer
         var scene = new LevelScene();
         scene.root.name = scene.name = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
-        if(RenderSettings.skybox != null)
-        {
-            int id = 11; // default to Sky001
-            int.TryParse(RenderSettings.skybox.name, out id);
-            scene.skyboxId = id; 
-        }
+        int id = 11; // default to Sky001
+        int.TryParse(RenderSettings.skybox.name, out id);
+        scene.skyboxId = id; 
         
         // Grab a copy of the world...
         var rootObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
@@ -136,12 +133,55 @@ public class LevelSerializer
             if (r == excludeRoot)
                 continue;
 
+            OptimizeLevelGeometry(r);
+
             HandleSun(r, scene);
             HandlePreviewCamera(r, scene);
 
-            var item = SerializeGameObject(r, false);
+            var item = SerializeGameObject(r, true);
             if (item != null)
                 scene.root.children.Add(item);
+        }
+
+        meshManager.FinalizeProxies();
+
+        // Now generate some static GOs and add to the scene. We generate 
+        // separate GOs for renderable, collidable or both geometry.
+        foreach (var pm in meshManager.Proxies)
+        {
+            var staticGo = new GameObject();
+                
+            staticGo.name = "StaticMesh_" + (pm.material != null ? pm.material.name : "Invisible");
+
+            var mf = staticGo.AddComponent<MeshFilter>();
+            mf.sharedMesh = pm.mesh;
+
+            if((pm.type & ProxyMeshInfo.MeshTypes.IsVisual) != 0)
+            {
+                var mr = staticGo.AddComponent<MeshRenderer>();
+                mr.material = pm.material;
+
+                // Need to actually set these values to get lightmapping...
+                mr.lightmapIndex = 0;
+                mr.lightmapScaleOffset = new Vector4(1, 1, 0, 0);
+
+                staticGo.name += "_R";
+            }
+
+            if ((pm.type & ProxyMeshInfo.MeshTypes.IsCollider) != 0)
+            {
+                staticGo.AddComponent<MeshCollider>();
+ 
+                staticGo.name += "_MC";
+            }
+
+            var levelRoot = SerializeGameObject(staticGo);
+            if (levelRoot != null)
+                scene.root.children.Add(levelRoot);
+
+            levelRoot.mesh.Flags |= LevelMesh.MeshFlags.IsStatic;
+
+            GameObject.DestroyImmediate(staticGo);
         }
 
         // Do final propagation of max vertex counts.
@@ -303,13 +343,10 @@ public class LevelSerializer
         SerializeMover(go, lo);
 
         // ElevatorMIU will take priority over ElevatorMover.
-        SerializeMoverMIU(go, lo);
+        // SerializeMoverMIU(go, lo);
 
         if (SerializePrefab(go, lo))
             return lo;
-
-
-        // SerializeProBuilder(go, lo);
 
         SerializeMesh(go, lo, rejectStatic);
 
@@ -328,11 +365,11 @@ public class LevelSerializer
             if (child.gameObject.activeInHierarchy == false)
                 continue;
             
-            // Removed so that empty game objects are preserved as prefab dummy objects
+            // This prunes bashers - leave it commented
             // if(IsGameObjectPrunable(child.gameObject))
             //     continue;
 
-            var result = SerializeGameObject(go.transform.GetChild(i).gameObject, rejectStatic);
+            var result = SerializeGameObject(go.transform.GetChild(i).gameObject);
             if (result == null)
                 continue;
 
@@ -488,61 +525,60 @@ public class LevelSerializer
         }
     }
 
+    // void SerializeMoverMIU(GameObject go, LevelObject lo)
+    // {
+    //     var em = go.GetComponent<ElevatorMover>();
+    //     if(em != null)
+    //         Debug.LogWarning("Found object " + go.name + " with both ElevatorMover and ElevatorMIU components - ElevatorMIU settings will be applied additively to the ElevatorMover settings - please fix this!");
 
-    void SerializeMoverMIU(GameObject go, LevelObject lo)
-    {
-        var em = go.GetComponent<ElevatorMover>();
-        if(em != null)
-            Debug.LogWarning("Found object " + go.name + " with both ElevatorMover and ElevatorMIU components - ElevatorMIU settings will be applied additively to the ElevatorMover settings - please fix this!");
+    //     var ev = go.GetComponent<ElevatorMIU>();
+    //     if(ev == null)
+    //         return;
 
-        var ev = go.GetComponent<ElevatorMIU>();
-        if(ev == null)
-            return;
-
-        if (go.GetComponentsInChildren<ElevatorMIU>().Length > 1)
-        {
-            failCause = "Moving Platforms cannot be nested: " + go.name;
-            Selection.activeGameObject = go.GetComponentsInChildren<ElevatorMIU>()[1].gameObject;
-            return;
-        }
-        if (go.GetComponent<MeshCollider>() == null)
-        {
-            failCause = "Moving Platforms must have a Mesh Collider component: " + go.name;
-            Selection.activeGameObject = go;
-            return;
-        }
+    //     if (go.GetComponentsInChildren<ElevatorMIU>().Length > 1)
+    //     {
+    //         failCause = "Moving Platforms cannot be nested: " + go.name;
+    //         Selection.activeGameObject = go.GetComponentsInChildren<ElevatorMIU>()[1].gameObject;
+    //         return;
+    //     }
+    //     if (go.GetComponent<MeshCollider>() == null)
+    //     {
+    //         failCause = "Moving Platforms must have a Mesh Collider component: " + go.name;
+    //         Selection.activeGameObject = go;
+    //         return;
+    //     }
         
-        var p = lo.properties;
-        p[LevelObject.MOVER] = true;
-        p[LevelObject.MOVER_MODE] = (int)ev.mode;
-        p[LevelObject.MOVER_COLLAPSETRIGGERED] = ev.WaitForTouched;
-        p[LevelObject.MOVER_STARTOFFSETTIME] = ev.StartOffsetTime;
-        lo.SetVector3(LevelObject.MOVER_DELTA, ev.delta);
-        lo.SetVector3(LevelObject.MOVER_DELTAROTATION, ev.deltaRotation);
-        p[LevelObject.MOVER_PAUSETIME] = ev.pauseTime;
-        p[LevelObject.MOVER_MOVETIME] = ev.moveTime;
-        p[LevelObject.MOVER_MOVEFIRST] = ev.moveFirst;
-        p[LevelObject.MOVER_SPLINESPEED] = ev.splineSpeed;
-        p[LevelObject.MOVER_KEEPORIENTATION] = ev.KeepOrientation;
+    //     var p = lo.properties;
+    //     p[LevelObject.MOVER] = true;
+    //     p[LevelObject.MOVER_MODE] = (int)ev.mode;
+    //     p[LevelObject.MOVER_COLLAPSETRIGGERED] = ev.WaitForTouched;
+    //     p[LevelObject.MOVER_STARTOFFSETTIME] = ev.StartOffsetTime;
+    //     lo.SetVector3(LevelObject.MOVER_DELTA, ev.delta);
+    //     lo.SetVector3(LevelObject.MOVER_DELTAROTATION, ev.deltaRotation);
+    //     p[LevelObject.MOVER_PAUSETIME] = ev.pauseTime;
+    //     p[LevelObject.MOVER_MOVETIME] = ev.moveTime;
+    //     p[LevelObject.MOVER_MOVEFIRST] = ev.moveFirst;
+    //     p[LevelObject.MOVER_SPLINESPEED] = ev.splineSpeed;
+    //     p[LevelObject.MOVER_KEEPORIENTATION] = ev.KeepOrientation;
 
-        p[LevelObject.MOVER_ENABLEBOB] = ev.EnableBob;
-        if (ev.EnableBob)
-        {
-            p[LevelObject.MOVER_BOBOFFSET] = ev.BobOffset;
-            p[LevelObject.MOVER_BOBPERIOD] = ev.BobPeriod;
-            lo.SetVector3(LevelObject.MOVER_BOBVECTOR, ev.BobVector);
-        }
-        // Also the spline.
-        if(ev.mode == ElevatorMIU.Mode.Spline)
-        {
-            var splineGo = ev.splineGo;
+    //     p[LevelObject.MOVER_ENABLEBOB] = ev.EnableBob;
+    //     if (ev.EnableBob)
+    //     {
+    //         p[LevelObject.MOVER_BOBOFFSET] = ev.BobOffset;
+    //         p[LevelObject.MOVER_BOBPERIOD] = ev.BobPeriod;
+    //         lo.SetVector3(LevelObject.MOVER_BOBVECTOR, ev.BobVector);
+    //     }
+    //     // Also the spline.
+    //     if(ev.mode == ElevatorMIU.Mode.Spline)
+    //     {
+    //         var splineGo = ev.splineGo;
             
-            p[LevelObject.SPLINE] = true;
-            p[LevelObject.SPLINE_COUNT] = splineGo.transform.childCount;
-            for(var i=0; i<splineGo.transform.childCount; i++)
-                lo.SetVector3(LevelObject.SPLINE_POSITION + i, splineGo.transform.GetChild(i).transform.position);
-        }
-    }
+    //         p[LevelObject.SPLINE] = true;
+    //         p[LevelObject.SPLINE_COUNT] = splineGo.transform.childCount;
+    //         for(var i=0; i<splineGo.transform.childCount; i++)
+    //             lo.SetVector3(LevelObject.SPLINE_POSITION + i, splineGo.transform.GetChild(i).transform.position);
+    //     }
+    // }
 
     void SerializeMisc(GameObject go, LevelObject lo)
     {
@@ -642,8 +678,7 @@ public class LevelSerializer
     string GetPrefabID(string name, GameObject prefabRef)
     {
         // name included for debugging use even though not hooked up here.
-        var mc =  mapComp.ResolveNameToPrefabID(name);
-        return mc;
+        return mapComp.ResolveNameToPrefabID(name);
     }
 
     // Serialize prefab state; return true if we did it because we can skip
@@ -682,101 +717,8 @@ public class LevelSerializer
             lo.prefabItem = GetPrefabID(go.name, null);
             return true;
         }
-
         return false;
     }
-
-    // MARBLR: don't think we need this, as it's for _designer files and inflates size.
-
-    // void SerializeProBuilder(GameObject go, LevelObject lo)
-    // {
-    //     var pbm = go.GetComponent<UnityEngine.ProBuilder.ProBuilderMesh>();
-    //     if(!pbm)
-    //         return;
-
-    //     var sh = new SerializerHelper();
-    //     var outBytes = sh.Stream = new ByteStream();
-        
-    //     outBytes.WriteInt32(pbm.faces.Count);
-    //     foreach(var f in pbm.faces)
-    //     {
-    //         outBytes.WriteInt32(f.indexes.Count);
-    //         foreach(var i in f.indexes)
-    //             outBytes.WriteInt32(i);
-
-    //         outBytes.WriteInt32(f.smoothingGroup);
-
-    //         var auw = f.uv;
-    //         outBytes.WriteBoolean(auw.useWorldSpace);
-    //         outBytes.WriteBoolean(auw.flipU);
-    //         outBytes.WriteBoolean(auw.flipV);
-    //         outBytes.WriteBoolean(auw.swapUV);
-    //         outBytes.WriteInt32((int)auw.fill);
-    //         outBytes.WriteVector2(auw.scale);
-    //         outBytes.WriteVector2(auw.offset);
-    //         outBytes.WriteSingle(auw.rotation);
-    //         outBytes.WriteInt32((int)auw.anchor);
-
-    //         outBytes.WriteInt32(f.submeshIndex);
-
-    //         outBytes.WriteBoolean(f.manualUV);
-
-    //         outBytes.WriteInt32(f.elementGroup);
-    //         outBytes.WriteInt32(f.textureGroup);
-    //     }
-
-    //     outBytes.WriteInt32(pbm.sharedVertices.Count);
-    //     foreach(var v in pbm.sharedVertices)
-    //     {
-    //         outBytes.WriteInt32(v.Count);
-    //         foreach(var vi in v)
-    //             outBytes.WriteInt32(vi);
-    //     }
-
-    //     outBytes.WriteInt32(pbm.sharedTextures.Length);
-    //     foreach (var v in pbm.sharedTextures)
-    //     {
-    //         outBytes.WriteInt32(v.Count);
-    //         foreach (var vi in v)
-    //             outBytes.WriteInt32(vi);
-    //     }
-
-    //     outBytes.WriteInt32(pbm.positions.Count);
-    //     foreach(var p in pbm.positions)
-    //         outBytes.WriteVector3(p);
-
-    //     outBytes.WriteInt32(pbm.textures.Count);
-    //     foreach (var p in pbm.textures)
-    //         outBytes.WriteVector2(p);
-
-    //     var tex2List = new List<Vector4>();
-    //     pbm.GetUVs(1, tex2List);
-    //     outBytes.WriteInt32(tex2List.Count);
-    //     foreach (var p in tex2List)
-    //         outBytes.WriteVector2(new Vector2(p.x, p.y));
-
-    //     outBytes.WriteInt32(pbm.tangents.Count);
-    //     foreach(var p in pbm.tangents)
-    //         outBytes.WriteVector4(p);
-
-    //     outBytes.WriteInt32(pbm.colors.Count);
-    //     foreach (var p in pbm.colors)
-    //         outBytes.WriteVector4(new Vector4(p.r, p.g, p.b, p.a));
-
-    //     outBytes.WriteBoolean(pbm.userCollisions);
-
-    //     outBytes.WriteSingle(pbm.unwrapParameters.hardAngle);
-    //     outBytes.WriteSingle(pbm.unwrapParameters.packMargin);
-    //     outBytes.WriteSingle(pbm.unwrapParameters.angleError);
-    //     outBytes.WriteSingle(pbm.unwrapParameters.areaError);
-
-
-    //     var sb = new SimpleBuffer();
-    //     sb.Stream = new MemoryStream(outBytes.Buffer, 0, outBytes.Position, true, true);
-        
-    //     lo.properties[LevelObject.PROBUILDERMESH] = true;
-    //     lo.properties[LevelObject.PROBUILDERMESH_DATA] = sb;
-    // }
 
     void SerializeMesh(GameObject go, LevelObject lo, bool rejectStatic = true)
     {
