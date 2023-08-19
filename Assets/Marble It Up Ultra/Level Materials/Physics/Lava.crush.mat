@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Lava.crush
-  m_Shader: {fileID: 4800000, guid: 70114fbb18ebf62439c5b82b6860673e, type: 3}
-  m_ShaderKeywords: _EMISSION _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+  m_Shader: {fileID: 4800000, guid: a646abb45c6b2a3479d0be6ce4bd7a6d, type: 3}
+  m_ShaderKeywords: _EMISSION _METALLICGLOSSMAP
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 14046bda54d514c4093301a6a9119554, type: 3}
+        m_Texture: {fileID: 2800000, guid: 739a181d67b36a64893d8ea7e54dd30e, type: 3}
         m_Scale: {x: 0.25, y: 0.25}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap_ST:
@@ -84,7 +84,7 @@ Material:
         m_Scale: {x: 0.3, y: 0.3}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d04b3f78004c5b14bb34c9e2e6062ba7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 739a181d67b36a64893d8ea7e54dd30e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskFlaks:
@@ -96,7 +96,7 @@ Material:
         m_Scale: {x: 0.25, y: 0.25}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5573a67967067bb4487e1b3ab0fef67f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTexture:
@@ -188,7 +188,7 @@ Material:
     - _Float2: 0.6
     - _Float3: 0
     - _Float4: 0.5
-    - _GlossMapScale: 0
+    - _GlossMapScale: 0.66
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _HueNoiseStrength: 1
@@ -208,7 +208,7 @@ Material:
     - _Scale: 2.11
     - _Smooth: 0.5
     - _Smoothness: 0.9
-    - _SmoothnessTextureChannel: 1
+    - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 44.48342
     - _SrcBlend: 1
@@ -227,7 +227,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color1: {r: 0.021626277, g: 0.056079105, b: 0.7352942, a: 0.953}
     - _Color3: {r: 0.035034638, g: 0.08247225, b: 0.39705884, a: 0}
-    - _EmissionColor: {r: 1, g: 0.4072403, b: 0.016807375, a: 1}
+    - _EmissionColor: {r: 1, g: 0.5882353, b: 0, a: 1}
     - _FlakesColor: {r: 0.73529416, g: 0.021626318, b: 0.36123332, a: 0.953}
     - _FlakesColor1: {r: 0.73529416, g: 0.021626318, b: 0.3612324, a: 0}
     - _FlakesColor2: {r: 0.021626277, g: 0.056078404, b: 0.7352942, a: 0}
