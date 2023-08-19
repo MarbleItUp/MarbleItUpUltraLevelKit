@@ -97,5 +97,4 @@ public class MapComponents : ScriptableObject {
     {
         return 0;
     }
-
 }

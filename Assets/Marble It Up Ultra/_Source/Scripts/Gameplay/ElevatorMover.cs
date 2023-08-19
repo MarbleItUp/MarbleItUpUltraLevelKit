@@ -29,46 +29,43 @@ public class ElevatorMover : MonoBehaviour
         Loop
     };
 
+    [Header("Behavior")]
+
+    [Tooltip("Set the behavior for this moving object.\n\nElevator: The object will move back and forth between its start and end point.\n\nSpline: The object will follow a linear spline path.\n\nLoop: The object will teleport back to its start point once reaching its end point.")]
     public Mode mode;
-
-    [Tooltip("Offsets the initial starting time by this many seconds.")]
+    [Tooltip("Offsets the start of this object's cycle by this many seconds.")]
     public float StartOffsetTime = 0.0f;
-
-    [Header("Collapse")]
-
-    [Tooltip("If true, we only start our movement once a player touches us.")]
+    [Tooltip("If true, the object will only begin moving once the marble touches it.")]
     public bool WaitForTouched;
-
-    #region Elevator
-
-    [Header("Elevator")]
-    public Vector3 delta = Vector3.zero;
-    public Vector3 deltaRotation = Vector3.zero;
-
-    public float pauseTime = 2.0f;
-    public float moveTime = 4.0f;
-
     [Tooltip("On startup, move first or pause first?")]
     public bool moveFirst = false;
 
+    [Header("Movement")]
+
+    [Tooltip("How much this object will be positionally translated.")]
+    public Vector3 delta = Vector3.zero;
+    [Tooltip("How much this object will be rotated.")]
+    public Vector3 deltaRotation = Vector3.zero;
+    [Tooltip("The amount of time this object will remain stationary once reaching its start or end point (in seconds).")]
+    public float pauseTime = 2.0f;
+    [Tooltip("The amount of time this object will take to move between its start and end points (in seconds).")]
+    public float moveTime = 4.0f;
+
     [Header("Bobbing")]
-    [Tooltip("Enable Bobbing Up/Down (for rotating platforms)")]
+    
+    [Tooltip("Enable Bobbing Up/Down (for rotating objects)")]
     public bool EnableBob = false;
+    [Tooltip("The axis in which this object will bob along.")]
     public Vector3 BobVector = Vector3.up;
-    public float BobPeriod = 2.5f, BobOffset = 0.0f;
-
-    #endregion
-
-    #region Spline
+    [Tooltip("The amount of time this object will take to complete a full bob (in seconds).")]
+    public float BobPeriod = 2.5f;
+    [Tooltip("Offsets the start of this object's bob cycle by this many seconds.")]
+    public float BobOffset = 0.0f;
 
     [Header("Spline")]
+
     public float splineSpeed = 0.2f;
-
-    // If set, platform stays in it's orientation.
+    [Tooltip("If set, platform stays in it's orientation.")]
     public bool KeepOrientation = false;
-
     public GameObject splineGo;
-
-   
-    #endregion
 }

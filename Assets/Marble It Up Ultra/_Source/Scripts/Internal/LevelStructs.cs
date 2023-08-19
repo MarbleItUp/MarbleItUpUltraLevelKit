@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace MIU
 {
-    // Describe the index buffer range and material to render
-    // a submesh.
+    // Describe the index buffer range and material to render a submesh.
     public class LevelSubMesh
     {
         public int start;
@@ -79,9 +78,7 @@ namespace MIU
                 return (Flags & MeshFlags.IsStatic) != 0;
             }
         }
-
     }
-
 
     public class LevelObject
     {
@@ -200,5 +197,4 @@ namespace MIU
         public Vector3 previewPosition;
         public Quaternion previewOrientation;
     }
-
 }

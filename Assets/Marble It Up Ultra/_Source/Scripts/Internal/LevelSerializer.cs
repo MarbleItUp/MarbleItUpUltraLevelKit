@@ -342,9 +342,6 @@ public class LevelSerializer
         SerializeMisc(go, lo);
         SerializeMover(go, lo);
 
-        // ElevatorMIU will take priority over ElevatorMover.
-        // SerializeMoverMIU(go, lo);
-
         if (SerializePrefab(go, lo))
             return lo;
 
@@ -524,61 +521,6 @@ public class LevelSerializer
                 lo.SetVector3(LevelObject.SPLINE_POSITION + i, splineGo.transform.GetChild(i).transform.position);
         }
     }
-
-    // void SerializeMoverMIU(GameObject go, LevelObject lo)
-    // {
-    //     var em = go.GetComponent<ElevatorMover>();
-    //     if(em != null)
-    //         Debug.LogWarning("Found object " + go.name + " with both ElevatorMover and ElevatorMIU components - ElevatorMIU settings will be applied additively to the ElevatorMover settings - please fix this!");
-
-    //     var ev = go.GetComponent<ElevatorMIU>();
-    //     if(ev == null)
-    //         return;
-
-    //     if (go.GetComponentsInChildren<ElevatorMIU>().Length > 1)
-    //     {
-    //         failCause = "Moving Platforms cannot be nested: " + go.name;
-    //         Selection.activeGameObject = go.GetComponentsInChildren<ElevatorMIU>()[1].gameObject;
-    //         return;
-    //     }
-    //     if (go.GetComponent<MeshCollider>() == null)
-    //     {
-    //         failCause = "Moving Platforms must have a Mesh Collider component: " + go.name;
-    //         Selection.activeGameObject = go;
-    //         return;
-    //     }
-        
-    //     var p = lo.properties;
-    //     p[LevelObject.MOVER] = true;
-    //     p[LevelObject.MOVER_MODE] = (int)ev.mode;
-    //     p[LevelObject.MOVER_COLLAPSETRIGGERED] = ev.WaitForTouched;
-    //     p[LevelObject.MOVER_STARTOFFSETTIME] = ev.StartOffsetTime;
-    //     lo.SetVector3(LevelObject.MOVER_DELTA, ev.delta);
-    //     lo.SetVector3(LevelObject.MOVER_DELTAROTATION, ev.deltaRotation);
-    //     p[LevelObject.MOVER_PAUSETIME] = ev.pauseTime;
-    //     p[LevelObject.MOVER_MOVETIME] = ev.moveTime;
-    //     p[LevelObject.MOVER_MOVEFIRST] = ev.moveFirst;
-    //     p[LevelObject.MOVER_SPLINESPEED] = ev.splineSpeed;
-    //     p[LevelObject.MOVER_KEEPORIENTATION] = ev.KeepOrientation;
-
-    //     p[LevelObject.MOVER_ENABLEBOB] = ev.EnableBob;
-    //     if (ev.EnableBob)
-    //     {
-    //         p[LevelObject.MOVER_BOBOFFSET] = ev.BobOffset;
-    //         p[LevelObject.MOVER_BOBPERIOD] = ev.BobPeriod;
-    //         lo.SetVector3(LevelObject.MOVER_BOBVECTOR, ev.BobVector);
-    //     }
-    //     // Also the spline.
-    //     if(ev.mode == ElevatorMIU.Mode.Spline)
-    //     {
-    //         var splineGo = ev.splineGo;
-            
-    //         p[LevelObject.SPLINE] = true;
-    //         p[LevelObject.SPLINE_COUNT] = splineGo.transform.childCount;
-    //         for(var i=0; i<splineGo.transform.childCount; i++)
-    //             lo.SetVector3(LevelObject.SPLINE_POSITION + i, splineGo.transform.GetChild(i).transform.position);
-    //     }
-    // }
 
     void SerializeMisc(GameObject go, LevelObject lo)
     {

@@ -43,6 +43,5 @@ public class PlayModifiers : MonoBehaviour {
         json.Add("airjumps", new JSONData(AirJumps));
 
         return json.ToString();
-
     }
 }
