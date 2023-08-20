@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 6815012112319629204}
   - component: {fileID: 3300864986311226200}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Rings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,7 +212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6997669335805433629}
   m_LocalRotation: {x: 0.7071068, y: -0.0000010325979, z: 0.0000010325979, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.01, z: 1.51}
+  m_LocalPosition: {x: 0, y: 0.01, z: 1.5}
   m_LocalScale: {x: 0.45, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 4459537885596995841}
@@ -295,7 +295,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7469273320747786830}
   m_LocalRotation: {x: -0, y: -0.0000014603138, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0.35, z: 0}
   m_LocalScale: {x: 0.1, y: 0.5, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4459537885596995841}
