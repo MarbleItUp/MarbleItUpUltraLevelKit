@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: 2c5973a331f2b6049a1805dbe2d3aeb5
+guid: e351aec477571044ea8fa0f48b03b4ec
 ModelImporter:
-  serializedVersion: 25
+  serializedVersion: 20300
   internalIDToNameTable:
   - first:
       1: 100000
@@ -25,10 +25,10 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: RoadSign01Curvy
-    second: {fileID: 2100000, guid: eb5d6cbc4753e654e8b38df25a9c58ed, type: 2}
+      name: RoadSign03ContinuousTurn
+    second: {fileID: 2100000, guid: 31c6ebe7a5094dc46aba986a32fd9963, type: 2}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -61,15 +61,18 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 0
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 0
+    bakeAxisConversion: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
@@ -79,6 +82,9 @@ ModelImporter:
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
@@ -90,8 +96,7 @@ ModelImporter:
     blendShapeNormalImportMode: 2
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
-  copyAvatar: 0
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -109,8 +114,12 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
