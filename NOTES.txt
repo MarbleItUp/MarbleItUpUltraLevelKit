@@ -1,9 +1,1 @@
-some Trim materials (Trim006) use Fill normal maps and MetalTile normal maps -- confirm if this is the case in-game
-
-surface.crush is a WIP
-
-test each skybox to see which ones do and don't export!
-
 Editor_needtofix contains our custom probuilder scripts that may not work in newer versions of PB...
-
-there are no marble reflections in exported levels -- does this require SerializeProBuilder() to work?
