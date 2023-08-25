@@ -1,1 +1,3 @@
 Editor_needtofix contains our custom probuilder scripts that may not work in newer versions of PB...
+
+the "Skybox" folder object has a blank particle system to easily preview all child particles (clouds, stars). the serializer will skip this particle system.

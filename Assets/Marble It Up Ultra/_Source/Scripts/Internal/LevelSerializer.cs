@@ -67,8 +67,7 @@ public class LevelSerializer
         if(go.activeInHierarchy == false || go.GetComponent<IgnoreObject>() != null)
             return true;
 
-        // Process all our children to see if they are themselves
-        // prunable.
+        // Process all our children to see if they are themselves prunable.
         foreach (Transform t in go.transform)
         {
             if(IsGameObjectPrunable(t.gameObject))
@@ -264,7 +263,7 @@ public class LevelSerializer
         //levelBits.Buffer = SerializerHelper.Compress(levelBits.Buffer);
 
         levelSize = levelBits.Position / 1024;
-        Debug.Log("Serialized level, length = " + levelSize + "kb");
+        Debug.Log("Serialized level of size: " + levelSize + " KB");
         
         Profiler.EndSample();
     }
@@ -342,13 +341,13 @@ public class LevelSerializer
         SerializeMisc(go, lo);
         SerializeMover(go, lo);
 
+        // MARBLR: serialize this data even if it is a prefab.
+        bool doKeep = SerializeKnownComponents(go, lo);
+
         if (SerializePrefab(go, lo))
             return lo;
 
         SerializeMesh(go, lo, rejectStatic);
-
-        bool skipChildren;
-        bool doKeep = SerializeKnownComponents(go, lo, out skipChildren);
 
         lo.LargestChildVertexCount = lo.mesh != null ? lo.mesh.vertexCount : 0;
 
@@ -356,15 +355,11 @@ public class LevelSerializer
         {
             var child = go.transform.GetChild(i);
 
-            if (skipChildren)
-                continue;
-
             if (child.gameObject.activeInHierarchy == false)
                 continue;
             
-            // This prunes bashers - leave it commented
-            // if(IsGameObjectPrunable(child.gameObject))
-            //     continue;
+            if(IsGameObjectPrunable(child.gameObject))
+                continue;
 
             var result = SerializeGameObject(go.transform.GetChild(i).gameObject);
             if (result == null)
@@ -384,29 +379,9 @@ public class LevelSerializer
         return lo;
     }
 
-    bool SerializeKnownComponents(GameObject go, LevelObject lo, out bool skipChildren)
+    bool SerializeKnownComponents(GameObject go, LevelObject lo)
     {
         bool doKeep = false;
-        skipChildren = false;
-
-        /*
-        var sdo = go.GetComponent<SpawnDriftingObjects>();
-        if(sdo != null)
-        {
-            var sh = new SerializerHelper();
-            sh.Stream = new ByteStream();
-            sh.Write(sdo);
-
-            var sb = new SimpleBuffer();
-            sb.Stream = new MemoryStream(sh.Stream.Buffer, 0, sh.Stream.Position, true, true);
-
-            lo.properties[LevelObject.SPAWN_DRIFTING_OBJECTS] = sb;
-            lo.properties[LevelObject.SPAWN_DRIFTING_OBJECTS_TEMPLATE] = GetPrefabID(go.name, sdo.ObjectToSpawn);
-
-            skipChildren = true;
-            doKeep = true;
-        }
-        */
 
         var mta = go.GetComponent<MeshTunnelAnimator>();
         if(mta != null)
@@ -428,8 +403,13 @@ public class LevelSerializer
         }      
 
         var ps = go.GetComponent<ParticleSystem>();
-        if(ps != null)
+        if(ps != null && ps.main.maxParticles != 0)
         {
+            // MARBLR: strip all sub-emitters off this particle system to avoid overwriting prefab references.
+            if (ps.subEmitters.subEmittersCount > 0)
+                for (int i = 0; i < ps.subEmitters.subEmittersCount; i++)
+                    ps.subEmitters.RemoveSubEmitter(i);
+
             var sh = new SerializerHelper();
             sh.Stream = new ByteStream();
             sh.Write(ps);
@@ -440,6 +420,8 @@ public class LevelSerializer
 
             var psr = go.GetComponent<ParticleSystemRenderer>();
             lo.properties[LevelObject.PARTICLE_SYSTEM_MATERIAL] = mapComp.ResolveMaterialToId(psr.sharedMaterial);
+            if (psr.trailMaterial != null)
+                lo.properties[LevelObject.PARTICLE_SYSTEM_TRAIL] = mapComp.ResolveMaterialToId(psr.trailMaterial);
             
             doKeep = true;
         }
@@ -641,12 +623,6 @@ public class LevelSerializer
             return false;
         }
 
-        if (fixedName == "CheckPoint" || fixedName == "LevelBounds" || go.GetComponent<TutorialMessage>() != null)
-        {
-            lo.prefabItem = GetPrefabID(MapComponents.FixName(go.name), null);
-            return true;
-        }
-
         int validChildren = 0;
         for(int i=0; i<go.transform.childCount; i++)
         {
@@ -654,7 +630,8 @@ public class LevelSerializer
                 validChildren++;
         }
 
-        if (validChildren == 0 && go.GetComponents<Component>().Length <= 3)
+        // MARBLR: never treat an object with a mesh renderer as a prefab, since it's...a mesh.
+        if (validChildren == 0 && go.GetComponent<MeshRenderer>() == null)
         {
             lo.prefabItem = GetPrefabID(go.name, null);
             return true;

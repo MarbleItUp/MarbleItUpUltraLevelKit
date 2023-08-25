@@ -109,6 +109,7 @@ namespace MIU
 
         public const string PARTICLE_SYSTEM = "ParticleSystem";
         public const string PARTICLE_SYSTEM_MATERIAL = PARTICLE_SYSTEM + "_Material";
+        public const string PARTICLE_SYSTEM_TRAIL = PARTICLE_SYSTEM + "_Trail";
 
         public const string BOX_COLLIDER = "BoxCollider";
         public const string BOX_COLLIDER_CENTER = BOX_COLLIDER + "_Center";

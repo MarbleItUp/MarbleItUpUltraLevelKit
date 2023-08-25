@@ -55,7 +55,7 @@ public class MapExporter : EditorWindow
             else
             {
                 GUILayout.BeginHorizontal();
-                GUILayout.Label("Export Size: " + LevelSerializer.levelSize + "kb" , smallLabel);
+                GUILayout.Label("File Size: " + LevelSerializer.levelSize + " KB" , smallLabel);
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("File Location: " + ("Assets/" + LevelSerializer.GetCurrentSceneLevelId().Replace('_', ' ') + ".level"), smallLabel);
@@ -145,7 +145,6 @@ public class MapExporter : EditorWindow
         if(LevelSerializer.failCause.Length == 0)
         {
             // TODO: allow user to choose export path
-            // string filePath = /* "Assets/" */ "C:/Users/Ryan/AppData/LocalLow/Bad Habit/MarbleItUpUltra/CustomLevels/Test/" + LevelSerializer.GetCurrentSceneLevelId() + ".level";
             string filePath = "Assets/" + LevelSerializer.GetCurrentSceneLevelId() + ".level";
 
             FileStream file;

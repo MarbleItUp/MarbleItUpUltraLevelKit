@@ -10,6 +10,7 @@ namespace MIU.ProBuilder
     [ProBuilderMenuAction]
     sealed class SnapUVToGrid : MenuAction
     {
+        // won't compile -- we can't access any probuilder classes. why?
         static Pref<float> s_GridSnapIncrement = new Pref<float>("uv.uvEditorGridSnapIncrement", .125f, SettingsScope.Project);
         
         public override ToolbarGroup group
