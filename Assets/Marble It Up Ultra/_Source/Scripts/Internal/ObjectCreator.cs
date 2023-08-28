@@ -10,14 +10,17 @@ public class ObjectCreator : EditorWindow
 {
     #region GUI
 
+    private const float ICON_SIZE = 50f;
+
+    // element styles
     GUIStyle bigLabel;
     GUIStyle smallLabel;
     GUIStyle bigButton;
     GUIStyle smallButton;
-    bool showCore;
-    bool gameplay;
-    bool showFX;
-    bool showMisc;
+    GUIStyle styleIconButton;
+
+    // foldouts
+    bool showUltra;
 
     private void OnGUI()
     {
@@ -27,27 +30,18 @@ public class ObjectCreator : EditorWindow
         GUILayout.BeginVertical();
         if(BaseSetupUI())
         {
-            GUILayout.Label("Scene Objects", bigLabel);
+            GUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider, GUILayout.MinWidth(0), GUILayout.MaxWidth(9999));
+            GUILayout.Label("Prefabs", bigLabel);
+            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider, GUILayout.MinWidth(0), GUILayout.MaxWidth(9999));
+            GUILayout.EndHorizontal();
 
-            showCore = EditorGUILayout.Foldout(showCore, "Core");
-            if (showCore)
-                CoreUI();
+            // showUltra = EditorGUILayout.Foldout(showUltra, "Ultra");
+            // if (showUltra)
+            UltraUI();
 
-            gameplay = EditorGUILayout.Foldout(gameplay, "Gameplay");
-            if (gameplay)
-                GameplayUI();
-
-            showFX = EditorGUILayout.Foldout(showFX, "FX");
-            if (showFX)
-                FXUI();
-
-            showMisc = EditorGUILayout.Foldout(showMisc, "Misc");
-            if (showMisc)
-                MiscUI();
-
-
-            //Export Section
-            EditorGUILayout.Space();
+            // Level Exporter
+            EditorGUILayout.Space(10);
             MapExporter.RunGUI();
         }
 
@@ -149,6 +143,57 @@ public class ObjectCreator : EditorWindow
         if (FoldoutButton("Marble Size Ref", 1)) CreateMableRef();
     }
 
+    void UltraUI()
+    {
+        // core
+        GUILayout.BeginHorizontal();
+        if (IconButton(content_startpad)) CreateSS();
+        if (IconButton(content_checkpoint)) CreateSJ();
+        if (IconButton(content_endpad)) CreateFF();
+        GUILayout.EndHorizontal();
+
+        // powerups
+        GUILayout.BeginHorizontal();
+        if (IconButton(content_boost)) CreateSS();
+        if (IconButton(content_jump)) CreateSJ();
+        if (IconButton(content_featherfall)) CreateFF();
+        if (IconButton(content_megamarble)) CreateSS();
+        if (IconButton(content_timetravel)) CreateTT();
+        GUILayout.EndHorizontal();
+
+        // gates
+        GUILayout.BeginHorizontal();
+        if (IconButton(content_gate_boost)) CreateSS();
+        if (IconButton(content_gate_jump)) CreateSJ();
+        if (IconButton(content_gate_featherfall)) CreateFF();
+        if (IconButton(content_gate_gem)) CreateSS();
+        if (IconButton(content_gate_timetravel)) CreateTT();
+        GUILayout.EndHorizontal();
+
+        // ring gates
+        GUILayout.BeginHorizontal();
+        if (IconButton(content_ring_boost)) CreateSS();
+        if (IconButton(content_ring_jump)) CreateSJ();
+        if (IconButton(content_ring_featherfall)) CreateFF();
+        if (IconButton(content_ring_gem)) CreateSS();
+        if (IconButton(content_ring_timetravel)) CreateTT();
+        GUILayout.EndHorizontal();
+
+        // hazards
+        GUILayout.BeginHorizontal();
+        if (IconButton(content_basher)) CreateSS();
+        if (IconButton(content_bumper)) CreateSJ();
+        GUILayout.EndHorizontal();
+
+        // signs
+    }
+
+    bool IconButton(GUIContent content)
+    {
+        bool val = GUILayout.Button(content, styleIconButton, GUILayout.MinWidth(10), GUILayout.MaxWidth(ICON_SIZE), GUILayout.Height(ICON_SIZE));
+        return val;
+    }
+
     bool FoldoutButton(string label, int indentLevel)
     {
         GUILayout.BeginHorizontal();
@@ -168,11 +213,59 @@ public class ObjectCreator : EditorWindow
 
     ObjectCreator()
     {
-        titleContent = new GUIContent("MIU Level Kit");
+        titleContent = new GUIContent("Marble It Up! Ultra");
     }
 
     void SetupStyle()
     {
+        // load icons
+        string path = "Assets/Marble It Up Ultra/_Source/Textures/Kit/";
+
+        this.icon_boost =               (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_boost.png", typeof(Texture));
+        this.icon_jump =                (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_jump.png", typeof(Texture));
+        this.icon_featherfall =         (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_featherfall.png", typeof(Texture));
+        this.icon_megamarble =          (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_megamarble.png", typeof(Texture));
+        this.icon_timetravel =          (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_timetravel.png", typeof(Texture));
+        this.icon_gate_boost =          (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_gate_boost.png", typeof(Texture));
+        this.icon_gate_jump =           (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_gate_jump.png", typeof(Texture));
+        this.icon_gate_featherfall =    (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_gate_featherfall.png", typeof(Texture));
+        this.icon_gate_gem =            (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_gate_gem.png", typeof(Texture));
+        this.icon_gate_timetravel =     (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_gate_timetravel.png", typeof(Texture));
+        this.icon_ring_boost =          (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_ring_boost.png", typeof(Texture));
+        this.icon_ring_jump =           (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_ring_jump.png", typeof(Texture));
+        this.icon_ring_featherfall =    (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_ring_featherfall.png", typeof(Texture));
+        this.icon_ring_gem =            (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_ring_gem.png", typeof(Texture));
+        this.icon_ring_timetravel =     (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_ring_timetravel.png", typeof(Texture));
+        this.icon_basher =              (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_basher.png", typeof(Texture));
+        this.icon_bumper =              (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_bumper.png", typeof(Texture));
+        
+        this.content_startpad =         new GUIContent(icon_timetravel, "Start Pad");
+        this.content_checkpoint =       new GUIContent(icon_timetravel, "Checkpoint");
+        this.content_endpad =           new GUIContent(icon_timetravel, "End Pad");
+        this.content_boost =            new GUIContent(icon_boost, "Boost");
+        this.content_jump =             new GUIContent(icon_jump, "Super Jump");
+        this.content_featherfall =      new GUIContent(icon_featherfall, "Feather Fall");
+        this.content_megamarble =       new GUIContent(icon_megamarble, "Mega Marble");
+        this.content_timetravel =       new GUIContent(icon_timetravel, "Time Travel");
+        this.content_gate_boost =       new GUIContent(icon_gate_boost, "Boost Gate");
+        this.content_gate_jump =        new GUIContent(icon_gate_jump, "Super Jump Gate");
+        this.content_gate_featherfall = new GUIContent(icon_gate_featherfall, "Feather Fall Gate");
+        this.content_gate_gem =         new GUIContent(icon_gate_gem, "Gem Gate");
+        this.content_gate_timetravel =  new GUIContent(icon_gate_timetravel, "Time Travel Gate");
+        this.content_ring_boost =       new GUIContent(icon_ring_boost, "Boost Ring Gate");
+        this.content_ring_jump =        new GUIContent(icon_ring_jump, "Super Jump Ring Gate");
+        this.content_ring_featherfall = new GUIContent(icon_ring_featherfall, "Feather Fall Ring Gate");
+        this.content_ring_gem =         new GUIContent(icon_ring_gem, "Gem Ring Gate");
+        this.content_ring_timetravel =  new GUIContent(icon_ring_timetravel, "Time Travel Ring Gate");
+        this.content_basher =           new GUIContent(icon_basher, "Basher");
+        this.content_bumper =           new GUIContent(icon_bumper, "Bumper");
+        
+        // apply styling
+        styleIconButton = new GUIStyle(GUI.skin.button);
+        styleIconButton.imagePosition = ImagePosition.ImageAbove;
+        styleIconButton.fontSize = 10;
+        styleIconButton.padding = new RectOffset(6, 6, 6, 6);
+
         bigLabel = new GUIStyle(GUI.skin.label);
         bigLabel.fontStyle = FontStyle.Bold;
         bigLabel.richText = true;
@@ -187,8 +280,6 @@ public class ObjectCreator : EditorWindow
 
         smallButton = new GUIStyle(GUI.skin.button);
         smallButton.fontSize = bigLabel.fontSize;
-        //smallButton.fixedWidth = 125;
-        
     }
 
     [MenuItem("Marble It Up/Level Kit Window")]
@@ -280,7 +371,7 @@ public class ObjectCreator : EditorWindow
             {
                 b.Encapsulate(r.bounds);
             }
-            bounds.transform.position = b.center /*+ (Vector3.up*10)*/;
+            bounds.transform.position = b.center;
             bc.center = Vector3.zero;
             bc.size = b.size + new Vector3(20, 20, 20);
         }       
@@ -581,4 +672,44 @@ public class ObjectCreator : EditorWindow
         return new SerializedObject(lightmapSettings);
     }
 #endregion
+
+    // icon buttons
+    private Texture icon_boost;
+    private Texture icon_jump;
+    private Texture icon_featherfall;
+    private Texture icon_megamarble;
+    private Texture icon_timetravel;
+    private Texture icon_gate_boost;
+    private Texture icon_gate_jump;
+    private Texture icon_gate_featherfall;
+    private Texture icon_gate_gem;
+    private Texture icon_gate_timetravel;
+    private Texture icon_ring_boost;
+    private Texture icon_ring_jump;
+    private Texture icon_ring_featherfall;
+    private Texture icon_ring_gem;
+    private Texture icon_ring_timetravel;
+    private Texture icon_basher;
+    private Texture icon_bumper;
+    
+    private GUIContent content_startpad;
+    private GUIContent content_checkpoint;
+    private GUIContent content_endpad;
+    private GUIContent content_boost;
+    private GUIContent content_jump;
+    private GUIContent content_featherfall;
+    private GUIContent content_megamarble;
+    private GUIContent content_timetravel;
+    private GUIContent content_gate_boost;
+    private GUIContent content_gate_jump;
+    private GUIContent content_gate_featherfall;
+    private GUIContent content_gate_gem;
+    private GUIContent content_gate_timetravel;
+    private GUIContent content_ring_boost;
+    private GUIContent content_ring_jump;
+    private GUIContent content_ring_featherfall;
+    private GUIContent content_ring_gem;
+    private GUIContent content_ring_timetravel;
+    private GUIContent content_basher;
+    private GUIContent content_bumper;
 }

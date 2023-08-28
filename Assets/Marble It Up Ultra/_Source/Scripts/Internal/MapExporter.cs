@@ -12,6 +12,8 @@ public class MapExporter : EditorWindow
 {
     public static bool hasResult = false;
 
+    static string filePath;
+
     MapExporter()
     {
         titleContent = new GUIContent("Level Exporter");
@@ -31,9 +33,24 @@ public class MapExporter : EditorWindow
         var bigButton = new GUIStyle(GUI.skin.button);
         bigButton.fontSize = bigLabel.fontSize;
 
+        var stylePath = new GUIStyle(GUI.skin.textField);
+        stylePath.alignment = TextAnchor.MiddleLeft;
+
         GUILayout.BeginVertical();
 
-        GUILayout.Label("Level Export", bigLabel);
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider, GUILayout.MinWidth(0), GUILayout.MaxWidth(9999));
+        GUILayout.Label("Level Exporter", bigLabel);
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider, GUILayout.MinWidth(0), GUILayout.MaxWidth(9999));
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        EditorGUI.BeginDisabledGroup(true);
+        GUILayout.Button(new GUIContent(PlayerPrefs.GetString("prefExportPath", "No Export Location Selected"), null, PlayerPrefs.GetString("prefExportPath", "")), stylePath, GUILayout.MinWidth(0), GUILayout.MaxWidth(9999));
+        EditorGUI.EndDisabledGroup();
+        if (GUILayout.Button(new GUIContent(EditorGUIUtility.IconContent("FolderOpened On Icon", "|Open Folder")), bigButton, GUILayout.Width(24), GUILayout.Height(18))) OpenExportPath();
+        if (GUILayout.Button(new GUIContent(EditorGUIUtility.IconContent("d_SaveAs", "|Choose Export Folder")), bigButton, GUILayout.Width(24), GUILayout.Height(18))) ChangeExportPath();
+        GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Export", bigButton)) BakeScene();
@@ -43,7 +60,7 @@ public class MapExporter : EditorWindow
         {
             GUILayout.BeginHorizontal();
             bool failed = LevelSerializer.failCause != "";
-            string str = failed ? "<color=red>Failed</color>" : "<color=green>Success</color>";
+            string str = failed ? "<color=#AA3333>Failed</color>" : "<color=#33AA33>Success</color>";
             GUILayout.Label("Status: " + str, bigLabel);
             GUILayout.EndHorizontal();
             if(failed)
@@ -57,8 +74,9 @@ public class MapExporter : EditorWindow
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("File Size: " + LevelSerializer.levelSize + " KB" , smallLabel);
                 GUILayout.EndHorizontal();
+
                 GUILayout.BeginHorizontal();
-                GUILayout.Label("File Location: " + ("Assets/" + LevelSerializer.GetCurrentSceneLevelId().Replace('_', ' ') + ".level"), smallLabel);
+                GUILayout.Label("File Location: " + filePath, smallLabel);
                 GUILayout.EndHorizontal();
             }
         }
@@ -134,7 +152,7 @@ public class MapExporter : EditorWindow
             GameObject bounds = MapComponents.FindFixed("LevelBounds");
             BoxCollider box = bounds.GetComponent<BoxCollider>();
             if (box.size.x > 4096 || box.size.y > 4096 || box.size.z > 4096)
-                LevelSerializer.failCause = "Map is too large! Ensure leve bounds dimensions are under 4096.";
+                LevelSerializer.failCause = "Map is too large! Ensure level bounds are under 4096 units.";
         }
 
         var serializer = new LevelSerializer();
@@ -144,8 +162,11 @@ public class MapExporter : EditorWindow
 
         if(LevelSerializer.failCause.Length == 0)
         {
-            // TODO: allow user to choose export path
-            string filePath = "Assets/" + LevelSerializer.GetCurrentSceneLevelId() + ".level";
+            // if no export path has been specified, ask now.
+            if (string.IsNullOrEmpty(PlayerPrefs.GetString("prefExportPath", "")))
+                ChangeExportPath();
+            
+            filePath = PlayerPrefs.GetString("prefExportPath", "Assets") + "/" + LevelSerializer.GetCurrentSceneLevelId() + ".level";
 
             FileStream file;
             if (!File.Exists(filePath))
@@ -155,13 +176,13 @@ public class MapExporter : EditorWindow
             file.Write(levelBits.Buffer, 0, levelBits.Position);
             file.Close();
 
-            Debug.Log("<color=green>Level Exported:</color> " + filePath);
+            Debug.Log("<b><color=#33AA33>Level Exported:</color></b> " + filePath);
         }
         else
         {
             if(LevelSerializer.failCause.Contains("Lightmap"))
                     Application.OpenURL("https://github.com/MarbleItUp/MIULevelCreationKit/blob/master/README.md#lightmaps");
-            Debug.Log("<color=#ff3232>Export Failed:</color> " + LevelSerializer.failCause);
+            Debug.Log("<b><color=#AA3333>Export Failed:</color></b> " + LevelSerializer.failCause);
         }
 
         hasResult = true;
@@ -169,5 +190,19 @@ public class MapExporter : EditorWindow
         ReloadCurrentScene();
     }
 
-    private Transform TestContainer = null;
+    private static void OpenExportPath()
+    {
+        string path = PlayerPrefs.GetString("prefExportPath", "");
+
+        if (!String.IsNullOrEmpty(path))
+            EditorUtility.OpenWithDefaultApp(path);
+    }
+
+    private static void ChangeExportPath()
+    {
+        string path = EditorUtility.OpenFolderPanel("Choose Export Folder", PlayerPrefs.GetString("prefExportPath", ""), "");
+
+        if (!String.IsNullOrEmpty(path))
+            PlayerPrefs.SetString("prefExportPath", path);
+    }
 }
