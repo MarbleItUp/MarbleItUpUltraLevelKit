@@ -32,13 +32,13 @@ RenderSettings:
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
-  m_DefaultReflectionMode: 0
+  m_DefaultReflectionMode: 1
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
-  m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16341828, g: 0.2489625, b: 0.3203912, a: 1}
+  m_CustomReflection: {fileID: 8900000, guid: 5afa629037af33f41878fb7679b57a8a, type: 3}
+  m_Sun: {fileID: 877841102}
+  m_IndirectSpecularColor: {r: 0.16337875, g: 0.24890764, b: 0.32036728, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6122,7 +6122,7 @@ Transform:
   - {fileID: 1218210079}
   - {fileID: 781378291}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &465184378
 PrefabInstance:
@@ -10911,6 +10911,11 @@ PrefabInstance:
 --- !u!4 &877841101 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4600439581561796, guid: 8251cd1c408c9fc4589abcd15602b239, type: 3}
+  m_PrefabInstance: {fileID: 877841100}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &877841102 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 108570447024696520, guid: 8251cd1c408c9fc4589abcd15602b239, type: 3}
   m_PrefabInstance: {fileID: 877841100}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &882277615
@@ -27757,7 +27762,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &2026999017
 Mesh:
