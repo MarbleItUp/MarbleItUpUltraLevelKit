@@ -4,14 +4,15 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: GreenBlueGradMUI02
   m_Shader: {fileID: 4800000, guid: f3ef7401fa6cab948aa35e65872a5ea3, type: 3}
   m_ShaderKeywords: _ALPHABLEND_ON _EMISSION _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
     _TOGGLESWITCH0_ON
   m_LightmapFlags: 2
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -95,3 +96,4 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 0, b: 0.42704535, a: 1}
     - _EmissionColor: {r: 1, g: 0, b: 0.5395632, a: 1}
+  m_BuildTextureStacks: []
