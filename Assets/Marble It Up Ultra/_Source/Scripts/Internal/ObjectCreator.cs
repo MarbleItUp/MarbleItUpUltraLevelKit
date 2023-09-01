@@ -12,6 +12,8 @@ public class ObjectCreator : EditorWindow
 
     private const float ICON_SIZE = 50f;
 
+    Vector2 scrollPos;
+
     // element styles
     GUIStyle bigLabel;
     GUIStyle smallLabel;
@@ -20,15 +22,20 @@ public class ObjectCreator : EditorWindow
     GUIStyle styleIconButton;
 
     // foldouts
-    bool showUltra;
+    bool showCore;
+    bool showPowerups;
+    bool showGates;
+    bool showHazards;
+    bool showSigns;
 
     private void OnGUI()
     {
         SetupStyle();
 
-        //UI Content
+        // Draw UI
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
         GUILayout.BeginVertical();
-        if(BaseSetupUI())
+        if(IsReadyForUI())
         {
             GUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider, GUILayout.MinWidth(0), GUILayout.MaxWidth(9999));
@@ -36,20 +43,35 @@ public class ObjectCreator : EditorWindow
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider, GUILayout.MinWidth(0), GUILayout.MaxWidth(9999));
             GUILayout.EndHorizontal();
 
-            // showUltra = EditorGUILayout.Foldout(showUltra, "Ultra");
-            // if (showUltra)
-            UltraUI();
+            showCore = EditorGUILayout.Foldout(showCore, "Core");
+            if (showCore)
+                CoreUI();
+
+            showPowerups = EditorGUILayout.Foldout(showPowerups, "Powerups");
+            if (showPowerups)
+                PowerupsUI();
+
+            showGates = EditorGUILayout.Foldout(showGates, "Gates");
+            if (showGates)
+                GatesUI();
+
+            showHazards = EditorGUILayout.Foldout(showHazards, "Hazards");
+            if (showHazards)
+                HazardsUI();
+            
+            showSigns = EditorGUILayout.Foldout(showSigns, "Signs");
+            if (showSigns)
+                SignsUI();
 
             // Level Exporter
             EditorGUILayout.Space(10);
             MapExporter.RunGUI();
         }
-
-
         GUILayout.EndVertical();
+        EditorGUILayout.EndScrollView();
     }
 
-    bool BaseSetupUI()
+    bool IsReadyForUI()
     {
         bool lightSet = true;
         if (Lightmapping.giWorkflowMode != Lightmapping.GIWorkflowMode.OnDemand || Lightmapping.realtimeGI != false || Lightmapping.bakedGI != true)
@@ -65,7 +87,7 @@ public class ObjectCreator : EditorWindow
         return readyForParts;
     }
 
-    void CoreUI()
+    void CoreUIOld()
     {
         GUILayout.Space(5);
         if (MapComponents.FindFixed("StartPad") == null)
@@ -92,58 +114,7 @@ public class ObjectCreator : EditorWindow
         GUILayout.Space(5);
     }
 
-    void GameplayUI()
-    {
-        int gemCount = MapComponents.GetNumOf("Gem");
-        FoldoutLabel("Pickups", 1);
-        GUILayout.Space(2);
-        if (FoldoutButton("Gem", 1)) CreateGem();
-        if (FoldoutButton("Super Jump", 1)) CreateSJ();
-        if (FoldoutButton("Super Speed", 1)) CreateSS();
-        if (FoldoutButton("Feather Fall", 1)) CreateFF();
-        if (FoldoutButton("Time Travel", 1)) CreateTT();
-        if (FoldoutButton("Trophy", 1)) CreateTrophy();
-        GUILayout.Space(2);
-        FoldoutLabel("Gems: <color=#0085ff>" + gemCount + "</color>", 1);
-        GUILayout.Space(10);
-        FoldoutLabel("Interactive", 1);
-        GUILayout.Space(2);
-        if (FoldoutButton("Bumper", 1)) CreateBumper();
-        if (FoldoutButton("Checkpoint", 1)) CreateCheckpoint();
-        if (FoldoutButton("Tutorial", 1)) CreateTutorial();
-        GUILayout.Space(5);
-    }
-
-    bool showSigns;
-    void FXUI()
-    {
-        GUILayout.BeginHorizontal();
-        GUILayout.Space(1 * 20);
-        showSigns = EditorGUILayout.Foldout(showSigns, "Signs");
-        GUILayout.EndHorizontal();
-        if (showSigns)
-        {
-            if (FoldoutButton("Curvy", 2)) CreateSignCurve();
-            if (FoldoutButton("Dropoff", 2)) CreateSignDrop();
-            if (FoldoutButton("Fork", 2)) CreateSignFork();
-            if (FoldoutButton("Hazard", 2)) CreateSignHazard();
-            if (FoldoutButton("Icy", 2)) CreateSignIce();
-            if (FoldoutButton("Steep", 2)) CreateSignSteep();
-            if (FoldoutButton("Left Turn", 2)) CreateSignLeft();
-            if (FoldoutButton("Right Turn", 2)) CreateSignRight();
-            if (FoldoutButton("Continuous Turn", 2)) CreateSignContinuous();
-        }
-        GUILayout.Space(1);
-        FoldoutLabel("More FX Objects can be found in Assets/MIU/Prefabs/FX folder.", 1);
-        GUILayout.Space(5);
-    }
-
-    void MiscUI()
-    {
-        if (FoldoutButton("Marble Size Ref", 1)) CreateMableRef();
-    }
-
-    void UltraUI()
+    void CoreUI()
     {
         // core
         GUILayout.BeginHorizontal();
@@ -151,41 +122,64 @@ public class ObjectCreator : EditorWindow
         if (IconButton(content_checkpoint)) CreateSJ();
         if (IconButton(content_endpad)) CreateFF();
         GUILayout.EndHorizontal();
+    }
 
+    void PowerupsUI()
+    {
         // powerups
         GUILayout.BeginHorizontal();
-        if (IconButton(content_boost)) CreateSS();
-        if (IconButton(content_jump)) CreateSJ();
-        if (IconButton(content_featherfall)) CreateFF();
-        if (IconButton(content_megamarble)) CreateSS();
-        if (IconButton(content_timetravel)) CreateTT();
+        if (IconButton(content_boost)) CreatePrefab(BOOST, "Gameplay");
+        if (IconButton(content_jump)) CreatePrefab(JUMP, "Gameplay");
+        if (IconButton(content_featherfall)) CreatePrefab(FEATHER_FALL, "Gameplay");
+        if (IconButton(content_megamarble)) CreatePrefab(MEGA_MARBLE, "Gameplay");
+        if (IconButton(content_timetravel)) CreatePrefab(TIME_TRAVEL, "Gameplay");
         GUILayout.EndHorizontal();
+    }
 
+    void GatesUI()
+    {
         // gates
         GUILayout.BeginHorizontal();
-        if (IconButton(content_gate_boost)) CreateSS();
-        if (IconButton(content_gate_jump)) CreateSJ();
-        if (IconButton(content_gate_featherfall)) CreateFF();
-        if (IconButton(content_gate_gem)) CreateSS();
-        if (IconButton(content_gate_timetravel)) CreateTT();
+        if (IconButton(content_gate_boost)) CreatePrefab(GATE_BOOST, "Gameplay");
+        if (IconButton(content_gate_jump)) CreatePrefab(GATE_JUMP, "Gameplay");
+        if (IconButton(content_gate_featherfall)) CreatePrefab(GATE_FEATHER_FALL, "Gameplay");
+        if (IconButton(content_gate_gem)) CreatePrefab(GATE_GEM, "Gameplay");
+        if (IconButton(content_gate_timetravel)) CreatePrefab(GATE_TIME_TRAVEL, "Gameplay");
         GUILayout.EndHorizontal();
 
         // ring gates
         GUILayout.BeginHorizontal();
-        if (IconButton(content_ring_boost)) CreateSS();
-        if (IconButton(content_ring_jump)) CreateSJ();
-        if (IconButton(content_ring_featherfall)) CreateFF();
-        if (IconButton(content_ring_gem)) CreateSS();
-        if (IconButton(content_ring_timetravel)) CreateTT();
+        if (IconButton(content_ring_boost)) CreatePrefab(RING_BOOST, "Gameplay");
+        if (IconButton(content_ring_jump)) CreatePrefab(RING_JUMP, "Gameplay");
+        if (IconButton(content_ring_featherfall)) CreatePrefab(RING_FEATHER_FALL, "Gameplay");
+        if (IconButton(content_ring_gem)) CreatePrefab(RING_GEM, "Gameplay");
+        if (IconButton(content_ring_timetravel)) CreatePrefab(RING_TIME_TRAVEL, "Gameplay");
         GUILayout.EndHorizontal();
+    }
 
+    void HazardsUI()
+    {
         // hazards
         GUILayout.BeginHorizontal();
         if (IconButton(content_basher)) CreateSS();
         if (IconButton(content_bumper)) CreateSJ();
         GUILayout.EndHorizontal();
+    }
 
+    void SignsUI()
+    {
         // signs
+        GUILayout.BeginHorizontal();
+        if (IconButton(content_sign_continuous)) CreateSS();
+        if (IconButton(content_sign_curvy)) CreateSJ();
+        if (IconButton(content_sign_dropoff)) CreateSS();
+        if (IconButton(content_sign_fork)) CreateSJ();
+        if (IconButton(content_sign_steep)) CreateSS();
+        if (IconButton(content_sign_turnleft)) CreateSJ();
+        if (IconButton(content_sign_turnright)) CreateSS();
+        if (IconButton(content_sign_hazard)) CreateSS();
+        if (IconButton(content_sign_icy)) CreateSJ();
+        GUILayout.EndHorizontal();
     }
 
     bool IconButton(GUIContent content)
@@ -238,6 +232,15 @@ public class ObjectCreator : EditorWindow
         this.icon_ring_timetravel =     (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_ring_timetravel.png", typeof(Texture));
         this.icon_basher =              (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_basher.png", typeof(Texture));
         this.icon_bumper =              (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_bumper.png", typeof(Texture));
+        this.icon_sign_continuous =     (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_sign_continuous.png", typeof(Texture));
+        this.icon_sign_curvy =          (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_sign_curvy.png", typeof(Texture));
+        this.icon_sign_dropoff =        (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_sign_dropoff.png", typeof(Texture));
+        this.icon_sign_fork =           (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_sign_fork.png", typeof(Texture));
+        this.icon_sign_hazard =         (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_sign_hazard.png", typeof(Texture));
+        this.icon_sign_icy =            (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_sign_icy.png", typeof(Texture));
+        this.icon_sign_steep =          (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_sign_steep.png", typeof(Texture));
+        this.icon_sign_turnleft =       (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_sign_turnleft.png", typeof(Texture));
+        this.icon_sign_turnright =      (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_sign_turnright.png", typeof(Texture));
         
         this.content_startpad =         new GUIContent(icon_timetravel, "Start Pad");
         this.content_checkpoint =       new GUIContent(icon_timetravel, "Checkpoint");
@@ -259,6 +262,15 @@ public class ObjectCreator : EditorWindow
         this.content_ring_timetravel =  new GUIContent(icon_ring_timetravel, "Time Travel Ring Gate");
         this.content_basher =           new GUIContent(icon_basher, "Basher");
         this.content_bumper =           new GUIContent(icon_bumper, "Bumper");
+        this.content_sign_continuous =  new GUIContent(icon_sign_continuous, "Continuous Turn");
+        this.content_sign_curvy =       new GUIContent(icon_sign_curvy, "Curvy");
+        this.content_sign_dropoff =     new GUIContent(icon_sign_dropoff, "Drop-off");
+        this.content_sign_fork =        new GUIContent(icon_sign_fork, "Fork");
+        this.content_sign_hazard =      new GUIContent(icon_sign_hazard, "Hazard");
+        this.content_sign_icy =         new GUIContent(icon_sign_icy, "Icy");
+        this.content_sign_steep =       new GUIContent(icon_sign_steep, "Steep");
+        this.content_sign_turnleft =    new GUIContent(icon_sign_turnleft, "Turn Left");
+        this.content_sign_turnright =   new GUIContent(icon_sign_turnright, "Turn Right");
         
         // apply styling
         styleIconButton = new GUIStyle(GUI.skin.button);
@@ -458,31 +470,8 @@ public class ObjectCreator : EditorWindow
     {
         Create("GiantCrystal", "bigcrystal_icon", "Skybox");
     }
-    #endregion
-
-    #region Multiplayer
-
-    static void CreateSpawnPoint()
-    {
-        Create("SpawnPoint", "mpspawn_icon", "Multiplayer", true);
-    }
 
     #endregion
-
-    static void CreateMableRef()
-    {
-        GameObject o = GameObject.Find("marble_size_reference");
-        if (o != null)
-        {
-            Debug.LogError("Size reference already exists!");
-            Selection.activeGameObject = o;
-            return;
-        }
-
-        o = Instantiate(Resources.Load<GameObject>("marble_size_reference"));
-        o.transform.name = "marble_size_reference";
-        Selection.activeGameObject = o;
-    }
 
     static void SetupLighting()
     {
@@ -609,6 +598,39 @@ public class ObjectCreator : EditorWindow
         return obj;
     }
 
+    static GameObject CreatePrefab(string guid, string holderName, bool unique = false)
+    {
+        // retrieve prefab by its GUID
+        var prefabPath = AssetDatabase.GUIDToAssetPath(guid);
+        var prefabObj = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+
+        if (unique)
+        {
+            GameObject o = GameObject.Find(MapComponents.FixName(prefabObj.name));
+            if (o != null)
+            {
+                Debug.LogError(prefabObj.name + " already exists!");
+                Selection.activeGameObject = o;
+                return null;
+            }
+        }
+        
+        GameObject obj = PrefabUtility.InstantiatePrefab(prefabObj) as GameObject;
+        obj.transform.position = GetSpawnPos();
+
+        if (holderName != null && holderName.Length > 0)
+        {
+            GameObject holder = GameObject.Find(holderName);
+            if (holder == null)
+                holder = new GameObject(holderName);
+
+            obj.transform.SetParent(holder.transform);
+        }
+
+        Selection.activeGameObject = obj;
+        return obj;
+    }
+
     static Vector3 GetSpawnPos()
     {
         Ray r = new Ray();
@@ -636,7 +658,7 @@ public class ObjectCreator : EditorWindow
         mi.Invoke(null, new object[] { gObj, texture });
     }
 
-    #region Lightmap Syste.Reflection Work
+    #region Lightmap System.Reflection Work
 
     public static void SetFloat(string name, float val)
     {
@@ -671,7 +693,27 @@ public class ObjectCreator : EditorWindow
         var lightmapSettings = getLightmapSettingsMethod.Invoke(null, null) as Object;
         return new SerializedObject(lightmapSettings);
     }
-#endregion
+
+    #endregion
+
+    // prefab GUIDs
+    private const string BOOST = "b48bea942ebbfa14d9448c0463356942";
+    private const string JUMP = "4d763d9049a6b5845ba97e2f48608199";
+    private const string FEATHER_FALL = "f166b3a35ca94a84ba983c35c0cf1073";
+    private const string MEGA_MARBLE = "be0d3ec95eba66647b2aec82c99342ce";
+    private const string TIME_TRAVEL = "04e5ed3090125014dbf3eea3e77e0adf";
+
+    private const string GATE_BOOST = "5f503b3b0506ab4459ed1856bbdfa40d";
+    private const string GATE_JUMP = "27f99fb1b220d7c48ab3d3324e7e61ca";
+    private const string GATE_FEATHER_FALL = "2c0078403db8078439dd9375ac380a11";
+    private const string GATE_GEM = "a66503db67a0a6942861fcffe3e0f258";
+    private const string GATE_TIME_TRAVEL = "7c28765487dec9d4bb81f576196b4ae1";
+
+    private const string RING_BOOST = "d882e731ae1c69c44b99e329fb9e692a";
+    private const string RING_JUMP = "61677fa7b9536d64b9dbdeaaf1229534";
+    private const string RING_FEATHER_FALL = "ab808cb0537754349b2f769d2e0bb5e0";
+    private const string RING_GEM = "88ea1209a39025f4588dd7d06f9cce68";
+    private const string RING_TIME_TRAVEL = "418d4ba566276f14a8e5db59ad8d72b4";
 
     // icon buttons
     private Texture icon_boost;
@@ -691,6 +733,15 @@ public class ObjectCreator : EditorWindow
     private Texture icon_ring_timetravel;
     private Texture icon_basher;
     private Texture icon_bumper;
+    private Texture icon_sign_continuous;
+    private Texture icon_sign_curvy;
+    private Texture icon_sign_dropoff;
+    private Texture icon_sign_fork;
+    private Texture icon_sign_hazard;
+    private Texture icon_sign_icy;
+    private Texture icon_sign_steep;
+    private Texture icon_sign_turnleft;
+    private Texture icon_sign_turnright;
     
     private GUIContent content_startpad;
     private GUIContent content_checkpoint;
@@ -712,4 +763,13 @@ public class ObjectCreator : EditorWindow
     private GUIContent content_ring_timetravel;
     private GUIContent content_basher;
     private GUIContent content_bumper;
+    private GUIContent content_sign_continuous;
+    private GUIContent content_sign_curvy;
+    private GUIContent content_sign_dropoff;
+    private GUIContent content_sign_fork;
+    private GUIContent content_sign_hazard;
+    private GUIContent content_sign_icy;
+    private GUIContent content_sign_steep;
+    private GUIContent content_sign_turnleft;
+    private GUIContent content_sign_turnright;
 }
