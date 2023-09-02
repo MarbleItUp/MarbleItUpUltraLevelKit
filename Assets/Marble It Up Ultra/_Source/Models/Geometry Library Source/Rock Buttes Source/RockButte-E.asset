@@ -11,16 +11,6 @@ Mesh:
   m_SubMeshes:
   - serializedVersion: 2
     firstByte: 0
-    indexCount: 0
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 0
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0, y: 0, z: 0}
-  - serializedVersion: 2
-    firstByte: 0
     indexCount: 228
     topology: 0
     baseVertex: 0
@@ -29,36 +19,6 @@ Mesh:
     localAABB:
       m_Center: {x: -4.6249924, y: 5.30436, z: 3.492527}
       m_Extent: {x: 4.625038, y: 5.3043685, z: 4.5000343}
-  - serializedVersion: 2
-    firstByte: 456
-    indexCount: 0
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 0
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0, y: 0, z: 0}
-  - serializedVersion: 2
-    firstByte: 456
-    indexCount: 0
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 0
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0, y: 0, z: 0}
-  - serializedVersion: 2
-    firstByte: 456
-    indexCount: 0
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 0
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0, y: 0, z: 0}
   m_Shapes:
     vertices: []
     shapes: []

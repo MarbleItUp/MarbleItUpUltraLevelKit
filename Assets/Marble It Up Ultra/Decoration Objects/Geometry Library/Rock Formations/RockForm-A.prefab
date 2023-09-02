@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5014252165413075652}
-  - component: {fileID: 5009749398530633211}
   - component: {fileID: 5009749398530633210}
   - component: {fileID: 5009749398530633213}
   - component: {fileID: 5009749398530633212}
@@ -36,19 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -10.070001, y: -206.62999, z: 7.1790004}
---- !u!114 &5009749398530633211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5009749398530633214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69fbd00be8d904b3da640e502905c345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EntityType: 0
 --- !u!23 &5009749398530633210
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1273,6 +1259,7 @@ MonoBehaviour:
     m_AreaError: 15
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
+  m_Mesh: {fileID: 0}
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2563,6 +2550,7 @@ MonoBehaviour:
     m_AreaError: 15
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
+  m_Mesh: {fileID: 0}
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
