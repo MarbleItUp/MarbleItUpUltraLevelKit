@@ -170,15 +170,15 @@ public class ObjectCreator : EditorWindow
     {
         // signs
         GUILayout.BeginHorizontal();
-        if (IconButton(content_sign_continuous)) CreateSS();
-        if (IconButton(content_sign_curvy)) CreateSJ();
-        if (IconButton(content_sign_dropoff)) CreateSS();
-        if (IconButton(content_sign_fork)) CreateSJ();
-        if (IconButton(content_sign_steep)) CreateSS();
-        if (IconButton(content_sign_turnleft)) CreateSJ();
-        if (IconButton(content_sign_turnright)) CreateSS();
-        if (IconButton(content_sign_hazard)) CreateSS();
-        if (IconButton(content_sign_icy)) CreateSJ();
+        if (IconButton(content_sign_continuous)) CreatePrefab(SIGN_CONTINUOUS, "Skybox");
+        if (IconButton(content_sign_curvy)) CreatePrefab(SIGN_CURVY, "Skybox");
+        if (IconButton(content_sign_dropoff)) CreatePrefab(SIGN_DROPOFF, "Skybox");
+        if (IconButton(content_sign_fork)) CreatePrefab(SIGN_FORK, "Skybox");
+        if (IconButton(content_sign_steep)) CreatePrefab(SIGN_STEEP, "Skybox");
+        if (IconButton(content_sign_turnleft)) CreatePrefab(SIGN_TURNLEFT, "Skybox");
+        if (IconButton(content_sign_turnright)) CreatePrefab(SIGN_TURNRIGHT, "Skybox");
+        if (IconButton(content_sign_hazard)) CreatePrefab(SIGN_HAZARD, "Skybox");
+        if (IconButton(content_sign_icy)) CreatePrefab(SIGN_ICY, "Skybox");
         GUILayout.EndHorizontal();
     }
 
@@ -604,6 +604,9 @@ public class ObjectCreator : EditorWindow
         var prefabPath = AssetDatabase.GUIDToAssetPath(guid);
         var prefabObj = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
 
+        if (!prefabObj)
+            return null;
+
         if (unique)
         {
             GameObject o = GameObject.Find(MapComponents.FixName(prefabObj.name));
@@ -714,6 +717,16 @@ public class ObjectCreator : EditorWindow
     private const string RING_FEATHER_FALL = "ab808cb0537754349b2f769d2e0bb5e0";
     private const string RING_GEM = "88ea1209a39025f4588dd7d06f9cce68";
     private const string RING_TIME_TRAVEL = "418d4ba566276f14a8e5db59ad8d72b4";
+
+    private const string SIGN_CONTINUOUS = "4694624a8599eef4ab450563af3fdada";
+    private const string SIGN_CURVY = "23460650ad533f84c89f25d0d1d097a5";
+    private const string SIGN_DROPOFF = "415bbe9734cc6e24c91600ff59d6dede";
+    private const string SIGN_FORK = "954e2f68e0718c04eaf404386219d3f0";
+    private const string SIGN_HAZARD = "0a2a2255d20784f499aa26d379c3432c";
+    private const string SIGN_ICY = "983b10274f185204b80f3ed9c9daa7d7";
+    private const string SIGN_STEEP = "19ccaa1095d6874438f9906905ee75d4";
+    private const string SIGN_TURNLEFT = "7b0da58e89a366d409351c12fe7c4bfa";
+    private const string SIGN_TURNRIGHT = "269bb9d6640f71e41962bdc87d9bb3dd";
 
     // icon buttons
     private Texture icon_boost;
