@@ -91,19 +91,6 @@ public class MapExporter : EditorWindow
 
     public static void BakeScene()
     {
-        Scene scene = EditorSceneManager.GetActiveScene();
-        if (scene.isDirty)
-        {
-            if(EditorUtility.DisplayDialog(
-                "OK to lose changes?", 
-                "You must save your level before exporting. If you click OK you will LOSE UNSAVED WORK. Do you want to lose your current changes?", 
-                "Yes, DELETE MY CHANGES AND EXPORT", 
-                "No, keep my changes and don't export.") == false)
-                return;
-        }
-
-        ReloadCurrentScene();
-
         hasResult = false;
         var assembly = Assembly.GetAssembly(typeof(SceneView));
         var type = assembly.GetType("UnityEditor.LogEntries");
@@ -186,8 +173,6 @@ public class MapExporter : EditorWindow
         }
 
         hasResult = true;
-
-        ReloadCurrentScene();
     }
 
     private static void OpenExportPath()
