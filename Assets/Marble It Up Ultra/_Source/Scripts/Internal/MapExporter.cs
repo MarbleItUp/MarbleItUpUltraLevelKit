@@ -83,12 +83,6 @@ public class MapExporter : EditorWindow
         GUILayout.EndVertical();
     }
 
-    static void ReloadCurrentScene()
-    {
-        Scene scene = EditorSceneManager.GetActiveScene();
-        EditorSceneManager.OpenScene(scene.path);
-    }
-
     public static void BakeScene()
     {
         hasResult = false;
