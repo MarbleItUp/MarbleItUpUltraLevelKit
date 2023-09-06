@@ -13,10 +13,10 @@ public class PlayModifiers : MonoBehaviour {
     public float BounceMult = 1;
     [Tooltip("Scalar affecting the marble's friction.\n\n(Default: 1)")]
     public float FrictionMult = 1;
-    [Tooltip("Scalar affecting the marble's movement on the ground.\n\nX affects left/right movement.\nY affects forward/backward movement.\n\n(Default: 1)")]
-    public Vector2 RollForceMult = Vector2.one;
-    [Tooltip("Scalar affecting the marble's movement in the air.\n\nX affects left/right movement.\nY affects forward/backward movement.\n\n(Default: 1)")]
-    public Vector2 AirForceMult = Vector2.one;
+    [Tooltip("Scalar affecting the marble's movement on the ground.\n\n(Default: 1)")]
+    public float RollForceMult = 1;
+    [Tooltip("Scalar affecting the marble's movement in the air.\n\n(Default: 1)")]
+    public float AirForceMult = 1;
     [Tooltip("Scalar affecting the marble's size.\n\n(Default: 1)")]
     public float ScaleMult = 1;
     [Tooltip("Toggle whether or not the marble can use the multiplayer blast ability.\n\n(Default: false)")]
@@ -33,11 +33,11 @@ public class PlayModifiers : MonoBehaviour {
         json.Add("scalemult", new JSONData(ScaleMult));
         json.Add("frictionmult", new JSONData(FrictionMult));
 
-        json.Add("rollX", new JSONData(RollForceMult.x));
-        json.Add("rollY", new JSONData(RollForceMult.y));
+        json.Add("rollX", new JSONData(RollForceMult));
+        json.Add("rollY", new JSONData(RollForceMult));
 
-        json.Add("airX", new JSONData(AirForceMult.x));
-        json.Add("airY", new JSONData(AirForceMult.y));
+        json.Add("airX", new JSONData(AirForceMult));
+        json.Add("airY", new JSONData(AirForceMult));
 
         json.Add("canblast", new JSONData(CanBlast));
         json.Add("airjumps", new JSONData(AirJumps));
