@@ -38,11 +38,7 @@ public class MapExporter : EditorWindow
 
         GUILayout.BeginVertical();
 
-        GUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider, GUILayout.MinWidth(0), GUILayout.MaxWidth(9999));
-        GUILayout.Label("Level Exporter", bigLabel);
-        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider, GUILayout.MinWidth(0), GUILayout.MaxWidth(9999));
-        GUILayout.EndHorizontal();
+        ObjectCreator.DrawHeader("Level Exporter");
 
         GUILayout.BeginHorizontal();
         EditorGUI.BeginDisabledGroup(true);
