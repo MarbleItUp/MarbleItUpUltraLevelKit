@@ -8,9 +8,6 @@ public class TutorialMessage : MonoBehaviour
     [TextArea]
     public string message = "Hello, World";
 
-    [HideInInspector]
-    public Sprite graphic = null;
-
     [Tooltip("If true, this message will only display once.")]
     public bool ShowOnce = false;
 }

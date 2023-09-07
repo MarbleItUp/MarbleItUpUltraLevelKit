@@ -448,7 +448,7 @@ public class LevelSerializer
             return;
 
         lo.properties[LevelObject.TUTORIAL] = true;
-        lo.properties[LevelObject.TUTORIAL_GRAPHIC] = mapComp.ResolveSpriteToID(tm.graphic);
+        lo.properties[LevelObject.TUTORIAL_GRAPHIC] = 0;
         lo.properties[LevelObject.TUTORIAL_MESSAGE] = tm.message;
         lo.properties[LevelObject.TUTORIAL_SHOWONCE] = tm.ShowOnce;
     }
