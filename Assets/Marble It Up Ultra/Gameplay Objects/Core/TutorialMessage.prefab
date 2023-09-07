@@ -15,7 +15,7 @@ GameObject:
   m_Layer: 2
   m_Name: TutorialMessage
   m_TagString: TutorialMessage
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: cc861be383907ab4789a3df3e6ef55b2, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
