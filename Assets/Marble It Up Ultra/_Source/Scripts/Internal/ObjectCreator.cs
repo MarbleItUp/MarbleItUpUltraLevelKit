@@ -442,10 +442,12 @@ public class ObjectCreator : EditorWindow
         GameObject staticObj = GameObject.Find("Static");
         if (staticObj == null)
             staticObj = new GameObject("Static");
+        staticObj.isStatic = true;
 
         GameObject lighting = GameObject.Find("Lighting");
         if (lighting == null)
             lighting = new GameObject("Lighting");
+        lighting.isStatic = true;
 
         if (lighting.transform.parent != staticObj.transform)
             lighting.transform.SetParent(staticObj.transform);
@@ -532,7 +534,7 @@ public class ObjectCreator : EditorWindow
 
     public static void ChangeProperty(string name, Action<SerializedProperty> changer)
     {
-        var lightmapSettings = getLighmapSettings();
+        var lightmapSettings = getLightmapSettings();
         var prop = lightmapSettings.FindProperty(name);
         if (prop != null)
         {
@@ -542,7 +544,7 @@ public class ObjectCreator : EditorWindow
         else Debug.LogError("lightmap property not found: " + name);
     }
 
-    static SerializedObject getLighmapSettings()
+    static SerializedObject getLightmapSettings()
     {
         var getLightmapSettingsMethod = typeof(LightmapEditorSettings).GetMethod("GetLightmapSettings", BindingFlags.Static | BindingFlags.NonPublic);
         var lightmapSettings = getLightmapSettingsMethod.Invoke(null, null) as Object;
