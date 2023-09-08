@@ -1377,7 +1377,7 @@ GameObject:
   - component: {fileID: 2984123394374268101}
   - component: {fileID: 5059731157702708751}
   - component: {fileID: 5599924537753375389}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: MTA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5556,7 +5556,7 @@ GameObject:
   - component: {fileID: 4716779729942179411}
   - component: {fileID: 4687440465744652991}
   - component: {fileID: 4697003700942739309}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}

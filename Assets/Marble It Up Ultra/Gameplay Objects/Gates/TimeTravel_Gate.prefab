@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4654171560453818}
   - component: {fileID: 33239783861221098}
   - component: {fileID: 23112831860625070}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: TimeTravel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 5366005100916123647}
   - component: {fileID: 942391594366308536}
   - component: {fileID: 616896890789970757}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: MTA
   m_TagString: Untagged
   m_Icon: {fileID: 0}

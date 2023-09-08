@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4649665370699082}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Gem
   m_TagString: Gem
   m_Icon: {fileID: 0}
