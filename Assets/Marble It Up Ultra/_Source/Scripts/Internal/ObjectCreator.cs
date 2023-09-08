@@ -76,10 +76,11 @@ public class ObjectCreator : EditorWindow
         EditorGUILayout.EndScrollView();
     }
 
+    // TODO: this may be better as a menu item rather than a kit window function
     bool IsSceneReady()
     {
         bool lightSet = true;
-        if (Lightmapping.giWorkflowMode != Lightmapping.GIWorkflowMode.OnDemand || Lightmapping.realtimeGI != false || Lightmapping.bakedGI != true)
+        if (Lightmapping.giWorkflowMode != Lightmapping.GIWorkflowMode.OnDemand || Lightmapping.realtimeGI != false || Lightmapping.bakedGI != true || RenderSettings.skybox == null || RenderSettings.skybox.name == "Default-Skybox")
             lightSet = false;
         bool readyForParts = lightSet;
 
@@ -97,6 +98,27 @@ public class ObjectCreator : EditorWindow
         // core
         GUILayout.BeginHorizontal();
 
+        if ((MapComponents.FindFixed("LevelBounds") == null)) {
+            if (IconButton(content_bounds)) { CreatePrefab(LEVEL_BOUNDS, "Gameplay", true); UpdateLevelBounds(); }
+        }
+        else {
+            if (IconButtonDisabled(content_bounds_c)) UpdateLevelBounds();
+        }
+
+        if (FindObjectOfType<Light>() == null) {
+            if (IconButton(content_sun)) SetupSun();
+        }
+        else {
+            if (IconButtonDisabled(content_sun_c)) SelectObject("Sun");
+        }
+
+        if (FindObjectOfType<LevelTiming>() == null) {
+            if (IconButton(content_timing)) CreatePrefab(LEVEL_TIMING, "Gameplay", true);
+        }
+        else {
+            if (IconButtonDisabled(content_timing_c)) SelectObject("LevelTiming");
+        }
+
         if (MapComponents.FindFixed("StartPad") == null) {
             if (IconButton(content_startpad)) CreatePrefab(START_PAD, "Gameplay", true);
         }
@@ -111,13 +133,6 @@ public class ObjectCreator : EditorWindow
             if (IconButtonDisabled(content_endpad_c)) SelectObject("EndPad");
         }
 
-        if (FindObjectOfType<LevelTiming>() == null) {
-            if (IconButton(content_timing)) CreatePrefab(LEVEL_TIMING, "Gameplay", true);
-        }
-        else {
-            if (IconButtonDisabled(content_timing_c)) SelectObject("LevelTiming");
-        }
-
         if ((MapComponents.FindFixed("Easter Egg") == null)) {
             if (IconButton(content_egg)) CreatePrefab(EGG, "Gameplay", true);
         }
@@ -125,16 +140,9 @@ public class ObjectCreator : EditorWindow
             if (IconButtonDisabled(content_egg_c)) SelectObject("Easter Egg");
         }
 
-        if ((MapComponents.FindFixed("LevelBounds") == null)) {
-            if (IconButton(content_bounds)) { CreatePrefab(LEVEL_BOUNDS, "Gameplay", true); UpdateLevelBounds(); }
-        }
-        else {
-            if (IconButton(content_bounds_c)) UpdateLevelBounds();
-        }
-
         if (IconButton(content_checkpoint)) CreatePrefab(CHECKPOINT, "Gameplay");
         if (IconButton(content_text)) CreatePrefab(TUTORIAL_MESSAGE, "Gameplay");
-
+        
         GUILayout.EndHorizontal();
     }
 
@@ -247,6 +255,8 @@ public class ObjectCreator : EditorWindow
         this.icon_timing_c =                 (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_timing_c.png", typeof(Texture));
         this.icon_bounds =                   (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_bounds.png", typeof(Texture));
         this.icon_bounds_c =                 (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_bounds_c.png", typeof(Texture));
+        this.icon_sun =                      (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_sun.png", typeof(Texture));
+        this.icon_sun_c =                    (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_sun_c.png", typeof(Texture));
         this.icon_boost =                    (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_boost.png", typeof(Texture));
         this.icon_jump =                     (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_jump.png", typeof(Texture));
         this.icon_featherfall =              (Texture)AssetDatabase.LoadAssetAtPath(path + "icon_featherfall.png", typeof(Texture));
@@ -295,6 +305,8 @@ public class ObjectCreator : EditorWindow
         this.content_timing_c =              new GUIContent(icon_timing_c, "Medal Times already exist");
         this.content_bounds =                new GUIContent(icon_bounds, "Level Bounds");
         this.content_bounds_c =              new GUIContent(icon_bounds_c, "Recalculate Level Bounds");
+        this.content_sun =                   new GUIContent(icon_sun, "Sun");
+        this.content_sun_c =                 new GUIContent(icon_sun_c, "Sun already exists");
         this.content_boost =                 new GUIContent(icon_boost, "Boost");
         this.content_jump =                  new GUIContent(icon_jump, "Super Jump");
         this.content_featherfall =           new GUIContent(icon_featherfall, "Feather Fall");
@@ -377,13 +389,16 @@ public class ObjectCreator : EditorWindow
 
     static void SetupLighting()
     {
-        //Sky
-        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+        // Skybox
+        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Skybox;
         RenderSettings.ambientIntensity = 1f;
-        if(RenderSettings.skybox == null)
-            RenderSettings.skybox = Resources.Load<Material>("Sky001");
+        RenderSettings.defaultReflectionMode = UnityEngine.Rendering.DefaultReflectionMode.Custom;
+        RenderSettings.customReflection = (Cubemap)AssetDatabase.LoadAssetAtPath("Assets/Marble It Up Ultra/_Source/Textures/Skies/sky001_cubemap.png", typeof(Cubemap));
 
-        //Lightmap Core
+        if (RenderSettings.skybox == null || RenderSettings.skybox.name == "Default-Skybox")
+            RenderSettings.skybox = (Material)AssetDatabase.LoadAssetAtPath("Assets/Marble It Up Ultra/Skies/11.mat", typeof(Material));
+
+        // Lightmap Core
 #if UNITY_2017_3_OR_NEWER
         LightmapEditorSettings.lightmapper = LightmapEditorSettings.Lightmapper.Enlighten;
 #else
@@ -397,13 +412,13 @@ public class ObjectCreator : EditorWindow
         SetBool("m_LightmapEditorSettings.m_FinalGather", false);
         SetFloat("m_GISettings.m_AlbedoBoost", 2);
 
-        //Ambient Occlusion
+        // Ambient Occlusion
         LightmapEditorSettings.aoMaxDistance = 8;
         LightmapEditorSettings.aoExponentDirect = 4;
         LightmapEditorSettings.aoExponentIndirect = 4;
         LightmapEditorSettings.enableAmbientOcclusion = true;
 
-        //Texture Generation
+        // Texture Generation
         LightmapEditorSettings.bakeResolution = 4;
         SetFloat("m_LightmapEditorSettings.m_Resolution", 2);
         LightmapEditorSettings.padding = 2;
@@ -412,7 +427,14 @@ public class ObjectCreator : EditorWindow
         LightmapEditorSettings.maxAtlasSize = 1024;
         SetBool("m_LightmapEditorSettings.m_TextureCompression", true);
 
-        //Setup Directional Light
+        // Light Source
+        SetupSun();
+
+        Debug.Log("Lighting setup complete.");
+    }
+
+    static void SetupSun()
+    {
         GameObject light = FindObjectOfType<Light>()?.gameObject;
         if(light == null)
             light = CreatePrefab(SUN, "", true);
@@ -429,9 +451,8 @@ public class ObjectCreator : EditorWindow
             lighting.transform.SetParent(staticObj.transform);
 
         light.transform.SetParent(lighting.transform);
-        light.transform.localPosition = Vector3.zero;
 
-        Debug.Log("Lighting setup complete.");
+        RenderSettings.sun = light.GetComponent<Light>();
     }
 
     static GameObject CreatePrefab(string guid, string holderName, bool unique = false)
@@ -592,6 +613,8 @@ public class ObjectCreator : EditorWindow
     private Texture icon_timing_c;
     private Texture icon_bounds;
     private Texture icon_bounds_c;
+    private Texture icon_sun;
+    private Texture icon_sun_c;
     private Texture icon_boost;
     private Texture icon_jump;
     private Texture icon_featherfall;
@@ -640,6 +663,8 @@ public class ObjectCreator : EditorWindow
     private GUIContent content_timing_c;
     private GUIContent content_bounds;
     private GUIContent content_bounds_c;
+    private GUIContent content_sun;
+    private GUIContent content_sun_c;
     private GUIContent content_boost;
     private GUIContent content_jump;
     private GUIContent content_featherfall;
