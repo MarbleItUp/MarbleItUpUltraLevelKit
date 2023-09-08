@@ -6,12 +6,11 @@ using System.Collections.Generic;
 
 public class QuadUV : EditorWindow
 {
-
-    [MenuItem("Marble It Up/Quad UV")]
+    [MenuItem("Marble It Up/Open Quad UV Window", false, 1)]
     static void OpenWindow()
     {
         var w = GetWindow<QuadUV>();
-        GUIContent titleContent = new GUIContent("MIU ProBuilder");
+        GUIContent titleContent = new GUIContent("Quad UV Tools");
         w.titleContent = titleContent;
         w.ShowTab();
     }
@@ -26,7 +25,6 @@ public class QuadUV : EditorWindow
         {
             ProcessQuadUVStripSelected();
         }
-        
     }
 
     [MenuItem("Tools//Actions/Quad UV - Selection", false, 20)]

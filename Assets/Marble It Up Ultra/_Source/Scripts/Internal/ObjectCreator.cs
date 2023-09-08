@@ -30,11 +30,17 @@ public class ObjectCreator : EditorWindow
         titleContent = new GUIContent("Marble It Up! Ultra");
     }
 
-    [MenuItem("Marble It Up/Level Kit Window")]
+    [MenuItem("Marble It Up/Open Level Kit Window", false, 0)]
     static void Baker()
     {
         var w = GetWindow<ObjectCreator>();
         w.ShowTab();
+    }
+
+    [MenuItem("Marble It Up/Fix Lightmap Settings", false, 20)]
+    static void FixLighting()
+    {
+        SetupLighting();
     }
 
     private void OnGUI()
@@ -44,53 +50,35 @@ public class ObjectCreator : EditorWindow
         // Draw UI
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
         GUILayout.BeginVertical();
-        if(IsSceneReady())
-        {
-            DrawHeader("Objects");
 
-            showCore = EditorGUILayout.Foldout(showCore, "Core");
-            if (showCore)
-                CoreUI();
+        DrawHeader("Objects");
 
-            showPowerups = EditorGUILayout.Foldout(showPowerups, "Powerups");
-            if (showPowerups)
-                PowerupsUI();
+        showCore = EditorGUILayout.Foldout(showCore, "Core");
+        if (showCore)
+            CoreUI();
 
-            showGates = EditorGUILayout.Foldout(showGates, "Gates");
-            if (showGates)
-                GatesUI();
+        showPowerups = EditorGUILayout.Foldout(showPowerups, "Powerups");
+        if (showPowerups)
+            PowerupsUI();
 
-            showHazards = EditorGUILayout.Foldout(showHazards, "Hazards");
-            if (showHazards)
-                HazardsUI();
+        showGates = EditorGUILayout.Foldout(showGates, "Gates");
+        if (showGates)
+            GatesUI();
+
+        showHazards = EditorGUILayout.Foldout(showHazards, "Hazards");
+        if (showHazards)
+            HazardsUI();
+        
+        showSigns = EditorGUILayout.Foldout(showSigns, "Signs");
+        if (showSigns)
+            SignsUI();
+
+        // Level Exporter
+        EditorGUILayout.Space(10);
+        MapExporter.RunGUI();
             
-            showSigns = EditorGUILayout.Foldout(showSigns, "Signs");
-            if (showSigns)
-                SignsUI();
-
-            // Level Exporter
-            EditorGUILayout.Space(10);
-            MapExporter.RunGUI();
-        }
         GUILayout.EndVertical();
         EditorGUILayout.EndScrollView();
-    }
-
-    // TODO: this may be better as a menu item rather than a kit window function
-    bool IsSceneReady()
-    {
-        bool lightSet = true;
-        if (Lightmapping.giWorkflowMode != Lightmapping.GIWorkflowMode.OnDemand || Lightmapping.realtimeGI != false || Lightmapping.bakedGI != true || RenderSettings.skybox == null || RenderSettings.skybox.name == "Default-Skybox")
-            lightSet = false;
-        bool readyForParts = lightSet;
-
-        if(!readyForParts)
-        {
-            DrawHeader("Scene Setup");
-            if (GUILayout.Button("Setup Lighting", styleBigButton)) SetupLighting();
-        }
-
-        return readyForParts;
     }
 
     void CoreUI()
