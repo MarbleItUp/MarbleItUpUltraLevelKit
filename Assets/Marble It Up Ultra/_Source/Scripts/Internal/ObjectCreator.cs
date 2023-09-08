@@ -86,7 +86,7 @@ public class ObjectCreator : EditorWindow
         if(!readyForParts)
         {
             DrawHeader("Scene Setup");
-            if (!lightSet) { if (GUILayout.Button("Setup Lighting", styleBigButton)) SetupLighting(); } // TODO: button does not draw
+            if (GUILayout.Button("Setup Lighting", styleBigButton)) SetupLighting();
         }
 
         return readyForParts;
@@ -412,36 +412,26 @@ public class ObjectCreator : EditorWindow
         LightmapEditorSettings.maxAtlasSize = 1024;
         SetBool("m_LightmapEditorSettings.m_TextureCompression", true);
 
-
         //Setup Directional Light
-        Light light = FindObjectOfType<Light>();
+        GameObject light = FindObjectOfType<Light>()?.gameObject;
         if(light == null)
-        {
-            GameObject o = new GameObject("Sun");
-            light = o.AddComponent<Light>();
-            light.type = LightType.Directional;
-        }
-        light.lightmapBakeType = LightmapBakeType.Mixed;
-        light.intensity = 1;
-        light.color = new Color(1, 244 / 255f, 214 / 255f);
-        light.bounceIntensity = 2;
-        light.shadows = LightShadows.Soft;
-        light.shadowStrength = 1;
+            light = CreatePrefab(SUN, "", true);
+        
         GameObject staticObj = GameObject.Find("Static");
         if (staticObj == null)
             staticObj = new GameObject("Static");
+
         GameObject lighting = GameObject.Find("Lighting");
         if (lighting == null)
             lighting = new GameObject("Lighting");
+
         if (lighting.transform.parent != staticObj.transform)
             lighting.transform.SetParent(staticObj.transform);
-        lighting.transform.localPosition = Vector3.zero;
-        lighting.transform.localEulerAngles = Vector3.zero;
+
         light.transform.SetParent(lighting.transform);
         light.transform.localPosition = Vector3.zero;
-        light.transform.localEulerAngles = new Vector3(50, -30, 0);
-        light.gameObject.name = "Sun";
-        light.gameObject.isStatic = true;
+
+        Debug.Log("Lighting setup complete.");
     }
 
     static GameObject CreatePrefab(string guid, string holderName, bool unique = false)
@@ -546,6 +536,7 @@ public class ObjectCreator : EditorWindow
     private const string LEVEL_BOUNDS = "21b9929ae70d9ad42bbd8eeb8c4acbac";
     private const string LEVEL_TIMING = "c8e56755e90da9e428eba6f9e7859af1";
     private const string TUTORIAL_MESSAGE = "4c6c31f81b483fb42a90d08ec5180947";
+    private const string SUN = "8251cd1c408c9fc4589abcd15602b239";
 
     private const string BOOST = "b48bea942ebbfa14d9448c0463356942";
     private const string JUMP = "4d763d9049a6b5845ba97e2f48608199";
