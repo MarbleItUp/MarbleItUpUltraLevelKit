@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: GearheartMainGear_Metal
+  m_Name: GearheartMainGear
   m_Shader: {fileID: 4800000, guid: fe8abf4c391b98542ac860739e8061a1, type: 3}
   m_ShaderKeywords: _DETAIL_MULX2 _EMISSION _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 2
