@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 7114084659195357375}
   - component: {fileID: 7124576413949458795}
   - component: {fileID: 7133270142784243587}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Boost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4902,7 +4902,7 @@ GameObject:
   - component: {fileID: 6928180168123640953}
   - component: {fileID: 5378807367852575786}
   - component: {fileID: 4776399878068046837}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: MTA
   m_TagString: Untagged
   m_Icon: {fileID: 0}

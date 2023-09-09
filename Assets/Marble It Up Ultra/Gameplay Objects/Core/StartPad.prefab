@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4322102465120504}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: StartPad
   m_TagString: Respawn
   m_Icon: {fileID: 0}

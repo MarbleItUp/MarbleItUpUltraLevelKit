@@ -1426,7 +1426,7 @@ GameObject:
   - component: {fileID: 8952181307002140172}
   - component: {fileID: 6493843770711044769}
   - component: {fileID: 8426843365145444512}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: MTA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2871,7 +2871,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7043742624670385808}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Gem_Ring_Gate_Horizontal
   m_TagString: Gem
   m_Icon: {fileID: 0}
@@ -2904,7 +2904,7 @@ GameObject:
   - component: {fileID: 7044170957167868690}
   - component: {fileID: 7036559419871545052}
   - component: {fileID: 7026818120070540954}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Gem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
