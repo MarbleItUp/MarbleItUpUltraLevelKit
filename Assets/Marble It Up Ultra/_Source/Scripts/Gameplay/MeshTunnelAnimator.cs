@@ -88,9 +88,7 @@ public class MeshTunnelAnimator : MonoBehaviour
 
     Color BaseTint = UnityEngine.Color.white;
 
-    static Dictionary<int, Material> MaterialHash = new Dictionary<int, Material>();
-
-    static int RenderQueueGenerator = 1;
+    // static int RenderQueueGenerator = 1;
 
     [EasyButtons.Button]
     void Respawn()
@@ -119,37 +117,20 @@ public class MeshTunnelAnimator : MonoBehaviour
         // Override materials.
         if (OverrideMaterial != null)
         {
-            // Generate hash key.
-            int key = DisplayMesh.GetInstanceID() ^ OverrideMaterial.name.GetHashCode();
-
-            // Look for attempt to use the same material/mesh combo if already
-            // present; same material instance means we can sort together and
-            // do instanced draws.
-            int queueId = 3000;            
             Material mat;
-            if(MaterialHash.ContainsKey(key) == false)
-            {
-                queueId = RenderQueueGenerator++;
-                mat = new Material(OverrideMaterial);
-                mat.renderQueue = 3000 + queueId; // 3000 is the first translucent queue.
-                MaterialHash[key] = mat;
+            mat = new Material(OverrideMaterial);
+            mat.renderQueue = 3000; // 3000 is the first translucent queue.
 
-                // Note that we only need unique queue IDs per level, so wrapping
-                // is OK. We'll just wipe and continue.
-                if (RenderQueueGenerator > 1000) {
-                    Debug.LogWarning("Wrapped around material hash in MeshTunnelAnimator!");
-                    RenderQueueGenerator = 0;
-                    MaterialHash = new Dictionary<int, Material>();
-                }
-
-            }
-            else
-            {
-                mat = MaterialHash[key];
-            }
+            // Note that we only need unique queue IDs per level, so wrapping
+            // is OK. We'll just wipe and continue.
+            // if (RenderQueueGenerator > 1000) {
+            //     Debug.LogWarning("Wrapped around material hash in MeshTunnelAnimator!");
+            //     RenderQueueGenerator = 0;
+            // }
 
             if(OverrideMaterial.HasProperty("_TintColor"))
                 BaseTint = OverrideMaterial.GetColor("_TintColor");
+
             var renderers = GetComponentsInChildren<MeshRenderer>();
             foreach (var r in renderers)
             {
@@ -167,7 +148,7 @@ public class MeshTunnelAnimator : MonoBehaviour
     }
 
     [EasyButtons.Button]
-    public void Stop()
+    public void Pause()
     {
         if(setupEditor && !Application.isPlaying)
         {
