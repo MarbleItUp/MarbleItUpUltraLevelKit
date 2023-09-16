@@ -635,13 +635,14 @@ public class LevelSerializer
     {
         MeshFilter mf = go.GetComponent<MeshFilter>();
         MeshRenderer mr = go.GetComponent<MeshRenderer>();
+        MeshTunnelAnimator mta = go.GetComponentInParent<MeshTunnelAnimator>(); // ignore MTA submeshes.
 
         bool isBatchStatic = GameObjectUtility.AreStaticEditorFlagsSet(go, StaticEditorFlags.BatchingStatic);
         bool isLightmapStatic = GameObjectUtility.AreStaticEditorFlagsSet(go, StaticEditorFlags.ContributeGI);
 
         bool shouldBailDueToRejectingStatics = rejectStatic && isBatchStatic;
 
-        if (mf == null || mf.sharedMesh == null || shouldBailDueToRejectingStatics)
+        if (mf == null || mf.sharedMesh == null || mta != null || shouldBailDueToRejectingStatics)
         {
             lo.mesh = new LevelMesh();
             return;
