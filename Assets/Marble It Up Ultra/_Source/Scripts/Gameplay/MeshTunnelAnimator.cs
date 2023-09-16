@@ -121,13 +121,6 @@ public class MeshTunnelAnimator : MonoBehaviour
             mat = new Material(OverrideMaterial);
             mat.renderQueue = 3000; // 3000 is the first translucent queue.
 
-            // Note that we only need unique queue IDs per level, so wrapping
-            // is OK. We'll just wipe and continue.
-            // if (RenderQueueGenerator > 1000) {
-            //     Debug.LogWarning("Wrapped around material hash in MeshTunnelAnimator!");
-            //     RenderQueueGenerator = 0;
-            // }
-
             if(OverrideMaterial.HasProperty("_TintColor"))
                 BaseTint = OverrideMaterial.GetColor("_TintColor");
 
