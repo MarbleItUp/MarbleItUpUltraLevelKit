@@ -48,19 +48,8 @@ public class ElevatorMover : MonoBehaviour
     public Vector3 deltaRotation = Vector3.zero;
     [Tooltip("The amount of time this object will remain stationary once reaching its start or end point (in seconds).")]
     public float pauseTime = 2.0f;
-    [Tooltip("The amount of time this object will take to move between its start and end points (in seconds).")]
+    [Tooltip("The amount of time this object will take to move between its start and end point (in seconds).")]
     public float moveTime = 4.0f;
-
-    [Header("Bobbing")]
-    
-    [Tooltip("Enable Bobbing Up/Down (for rotating objects)")]
-    public bool EnableBob = false;
-    [Tooltip("The axis in which this object will bob along.")]
-    public Vector3 BobVector = Vector3.up;
-    [Tooltip("The amount of time this object will take to complete a full bob (in seconds).")]
-    public float BobPeriod = 2.5f;
-    [Tooltip("Offsets the start of this object's bob cycle by this many seconds.")]
-    public float BobOffset = 0.0f;
 
     [Header("Spline")]
 

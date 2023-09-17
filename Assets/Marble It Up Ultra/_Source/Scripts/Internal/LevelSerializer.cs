@@ -484,15 +484,7 @@ public class LevelSerializer
         p[LevelObject.MOVER_MOVEFIRST] = ev.moveFirst;
         p[LevelObject.MOVER_SPLINESPEED] = ev.splineSpeed;
         p[LevelObject.MOVER_KEEPORIENTATION] = ev.KeepOrientation;
-
-        p[LevelObject.MOVER_ENABLEBOB] = ev.EnableBob;
-        if (ev.EnableBob)
-        {
-            p[LevelObject.MOVER_BOBOFFSET] = ev.BobOffset;
-            p[LevelObject.MOVER_BOBPERIOD] = ev.BobPeriod;
-            lo.SetVector3(LevelObject.MOVER_BOBVECTOR, ev.BobVector);
-        }
-        // Also the spline.
+        
         if(ev.mode == ElevatorMover.Mode.Spline)
         {
             var splineGo = ev.splineGo;
@@ -643,13 +635,14 @@ public class LevelSerializer
     {
         MeshFilter mf = go.GetComponent<MeshFilter>();
         MeshRenderer mr = go.GetComponent<MeshRenderer>();
+        MeshTunnelAnimator mta = go.GetComponentInParent<MeshTunnelAnimator>(); // ignore MTA submeshes.
 
         bool isBatchStatic = GameObjectUtility.AreStaticEditorFlagsSet(go, StaticEditorFlags.BatchingStatic);
         bool isLightmapStatic = GameObjectUtility.AreStaticEditorFlagsSet(go, StaticEditorFlags.ContributeGI);
 
         bool shouldBailDueToRejectingStatics = rejectStatic && isBatchStatic;
 
-        if (mf == null || mf.sharedMesh == null || shouldBailDueToRejectingStatics)
+        if (mf == null || mf.sharedMesh == null || mta != null || shouldBailDueToRejectingStatics)
         {
             lo.mesh = new LevelMesh();
             return;

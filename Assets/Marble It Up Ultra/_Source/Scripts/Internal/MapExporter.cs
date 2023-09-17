@@ -81,11 +81,9 @@ public class MapExporter : EditorWindow
 
     public static void BakeScene()
     {
+        ClearConsole();
+
         hasResult = false;
-        var assembly = Assembly.GetAssembly(typeof(SceneView));
-        var type = assembly.GetType("UnityEditor.LogEntries");
-        var method = type.GetMethod("Clear");
-        method.Invoke(new object(), null);
         LevelSerializer.failCause = "";
         Debug.Log("Starting Level Export");
 
@@ -157,5 +155,13 @@ public class MapExporter : EditorWindow
 
         if (!String.IsNullOrEmpty(path))
             PlayerPrefs.SetString("prefExportPath", path);
+    }
+
+    public static void ClearConsole()
+    {
+        var assembly = Assembly.GetAssembly(typeof(SceneView));
+        var type = assembly.GetType("UnityEditor.LogEntries");
+        var method = type.GetMethod("Clear");
+        method.Invoke(new object(), null);
     }
 }
