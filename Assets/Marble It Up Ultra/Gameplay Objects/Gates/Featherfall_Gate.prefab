@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 682899131536653125}
   - component: {fileID: 656672326732611083}
   - component: {fileID: 664549330793429777}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Featherfall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2505,7 +2505,7 @@ GameObject:
   - component: {fileID: 314476381364308416}
   - component: {fileID: 6123839519408142842}
   - component: {fileID: 150416987593051327}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: MTA
   m_TagString: Untagged
   m_Icon: {fileID: 0}

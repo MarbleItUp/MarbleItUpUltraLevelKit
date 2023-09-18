@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5269713864591853356}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Gem_Gate
   m_TagString: Gem
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5269462877559394758}
   - component: {fileID: 5280205618572107390}
   - component: {fileID: 5288168441502367458}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Gem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2489,7 +2489,7 @@ GameObject:
   - component: {fileID: 3472706221234972706}
   - component: {fileID: 6956049627628484076}
   - component: {fileID: 3096926345516432799}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: MTA
   m_TagString: Untagged
   m_Icon: {fileID: 0}

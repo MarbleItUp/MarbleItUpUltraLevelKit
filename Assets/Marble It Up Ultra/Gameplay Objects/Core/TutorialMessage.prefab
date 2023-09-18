@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 33870879834749660}
   - component: {fileID: 65403988355995148}
   - component: {fileID: 5852588262554615005}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: TutorialMessage
   m_TagString: TutorialMessage
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: cc861be383907ab4789a3df3e6ef55b2, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -67,5 +67,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: Hello, World!
-  graphic: {fileID: 0}
   ShowOnce: 0

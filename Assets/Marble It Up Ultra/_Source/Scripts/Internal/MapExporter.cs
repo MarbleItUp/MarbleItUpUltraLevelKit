@@ -38,11 +38,7 @@ public class MapExporter : EditorWindow
 
         GUILayout.BeginVertical();
 
-        GUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider, GUILayout.MinWidth(0), GUILayout.MaxWidth(9999));
-        GUILayout.Label("Level Exporter", bigLabel);
-        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider, GUILayout.MinWidth(0), GUILayout.MaxWidth(9999));
-        GUILayout.EndHorizontal();
+        ObjectCreator.DrawHeader("Level Exporter");
 
         GUILayout.BeginHorizontal();
         EditorGUI.BeginDisabledGroup(true);
@@ -83,76 +79,33 @@ public class MapExporter : EditorWindow
         GUILayout.EndVertical();
     }
 
-    static void ReloadCurrentScene()
-    {
-        Scene scene = EditorSceneManager.GetActiveScene();
-        EditorSceneManager.OpenScene(scene.path);
-    }
-
     public static void BakeScene()
     {
-        Scene scene = EditorSceneManager.GetActiveScene();
-        if (scene.isDirty)
-        {
-            if(EditorUtility.DisplayDialog(
-                "OK to lose changes?", 
-                "You must save your level before exporting. If you click OK you will LOSE UNSAVED WORK. Do you want to lose your current changes?", 
-                "Yes, DELETE MY CHANGES AND EXPORT", 
-                "No, keep my changes and don't export.") == false)
-                return;
-        }
-
-        ReloadCurrentScene();
+        ClearConsole();
 
         hasResult = false;
-        var assembly = Assembly.GetAssembly(typeof(SceneView));
-        var type = assembly.GetType("UnityEditor.LogEntries");
-        var method = type.GetMethod("Clear");
-        method.Invoke(new object(), null);
         LevelSerializer.failCause = "";
         Debug.Log("Starting Level Export");
 
-        if(MapComponents.GetNumOf("SpawnPoint") == 0)
-        {
-            if (MapComponents.GetNumOf("StartPad") != 1)
-            {
-                LevelSerializer.failCause = "Singleplayer Level needs one StartPad!";
-            }
-            if (MapComponents.GetNumOf("EndPad") != 1)
-            {
-                LevelSerializer.failCause = "Singleplayer Level needs one EndPad!";
-            }
-            if (FindObjectsOfType<LevelTiming>().Length != 1)
-            {
-                LevelSerializer.failCause = "Singleplayer Level needs one Level Times object!";
-            }
-        }  
-        else
-        {
-            if (MapComponents.GetNumOf("StartPad") > 0)
-            {
-                LevelSerializer.failCause = "Multiplayer Maps can't have StartPads.";
-            }
-            if (MapComponents.GetNumOf("EndPad") > 0)
-            {
-                LevelSerializer.failCause = "Multiplayer Maps can't have EndPads.";
-            }
-            if (FindObjectsOfType<LevelTiming>().Length > 0)
-            {
-                LevelSerializer.failCause = "Multiplayer Maps can't have timers.";
-            }
-        }
+        if (MapComponents.GetNumOf("StartPad") != 1)
+            LevelSerializer.failCause = "Level needs one StartPad!";
+            
+        if (MapComponents.GetNumOf("EndPad") != 1)
+            LevelSerializer.failCause = "Level needs one EndPad!";
+            
+        if (FindObjectsOfType<LevelTiming>().Length != 1)
+            LevelSerializer.failCause = "Level needs one LevelTiming object!";
 
         if (MapComponents.GetNumOf("LevelBounds") != 1)
         {
-            LevelSerializer.failCause = "Level needs one Level Bounds!";
+            LevelSerializer.failCause = "Level needs one LevelBounds volume!";
         }
         else
         {
             GameObject bounds = MapComponents.FindFixed("LevelBounds");
             BoxCollider box = bounds.GetComponent<BoxCollider>();
             if (box.size.x > 4096 || box.size.y > 4096 || box.size.z > 4096)
-                LevelSerializer.failCause = "Map is too large! Ensure level bounds are under 4096 units.";
+                LevelSerializer.failCause = "Map is too large! Ensure level bounds are under 4096 units in size.";
         }
 
         var serializer = new LevelSerializer();
@@ -186,8 +139,6 @@ public class MapExporter : EditorWindow
         }
 
         hasResult = true;
-
-        ReloadCurrentScene();
     }
 
     private static void OpenExportPath()
@@ -204,5 +155,13 @@ public class MapExporter : EditorWindow
 
         if (!String.IsNullOrEmpty(path))
             PlayerPrefs.SetString("prefExportPath", path);
+    }
+
+    public static void ClearConsole()
+    {
+        var assembly = Assembly.GetAssembly(typeof(SceneView));
+        var type = assembly.GetType("UnityEditor.LogEntries");
+        var method = type.GetMethod("Clear");
+        method.Invoke(new object(), null);
     }
 }
