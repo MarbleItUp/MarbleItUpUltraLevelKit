@@ -1,0 +1,734 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1369050120037719544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369050120037719545}
+  m_Layer: 0
+  m_Name: MarblewaveSun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1369050120037719545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369050120037719544}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1369050121464914810}
+  - {fileID: 1369050121234889082}
+  - {fileID: 1369050121544866631}
+  - {fileID: 1369050121027689879}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1369050121027689878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369050121027689879}
+  - component: {fileID: 6941290056952016899}
+  m_Layer: 0
+  m_Name: MTA_VaporwaveSunTrail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1369050121027689879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369050121027689878}
+  m_LocalRotation: {x: 0.00000026822005, y: -0.00000032151542, z: 0.707109, w: -0.7071047}
+  m_LocalPosition: {x: 0, y: 20, z: -1500}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1369050120037719545}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
+--- !u!114 &6941290056952016899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369050121027689878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3092ea9c57c07e74b83945a5ed657a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisplayMesh: {fileID: 919132149155446097, guid: 73f613a1dd919fe41941317a8ac9328f, type: 3}
+  NumberToSpawn: 5
+  SpawnOnGrid: 0
+  GridSize: {x: 1, y: 1, z: 1}
+  EnableGridMotionLock: 0
+  LockBoxMin: {x: 0, y: 0, z: 0}
+  LockBoxMax: {x: 0, y: 0, z: 0}
+  GridSpacing: {x: 1, y: 1, z: 1}
+  OverrideMaterial: {fileID: 2100000, guid: 8bf6c5ec3f4f6ba40ac1dea20a930bb8, type: 2}
+  SpawnWithZeroTime: 0
+  CycleTime: 14
+  SpeedVariance: 0
+  SpeedOffset: 0
+  Location:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.2831649
+      outSlope: 1.2831649
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.41922802
+      value: 0.53793865
+      inSlope: 1.0393817
+      outSlope: 1.0393817
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.79559857
+      outSlope: 0.79559857
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DirectionOfMotion: {x: -200, y: 0, z: 0}
+  Rotation:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AxisOfRotation: {x: 0, y: 1, z: 0}
+  RotationScale: 360
+  Scale:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.85
+      inSlope: 0.31088427
+      outSlope: 0.31088427
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07161401
+    - serializedVersion: 3
+      time: 0.75636965
+      value: 1.02
+      inSlope: 0.0028523924
+      outSlope: 0.0028523924
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.91448826
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0820915
+      outSlope: -0.0820915
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ScaleFactor: {x: 650, y: 893, z: 900}
+  Color:
+    serializedVersion: 2
+    key0: {r: 0.88616, g: 0, b: 0.9647059, a: 0}
+    key1: {r: 0.9647059, g: 0.28839463, b: 0, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 1}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 10601
+    atime2: 61102
+    atime3: 65535
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 4
+--- !u!1 &1369050121234889077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369050121234889082}
+  - component: {fileID: 5447211186828086912}
+  m_Layer: 0
+  m_Name: MTA_VaporwaveSunTrail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1369050121234889082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369050121234889077}
+  m_LocalRotation: {x: 0.00000026822005, y: -0.00000032151542, z: 0.707109, w: -0.7071047}
+  m_LocalPosition: {x: 0, y: 20, z: -1500}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1369050120037719545}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
+--- !u!114 &5447211186828086912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369050121234889077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3092ea9c57c07e74b83945a5ed657a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisplayMesh: {fileID: 919132149155446097, guid: 73f613a1dd919fe41941317a8ac9328f, type: 3}
+  NumberToSpawn: 5
+  SpawnOnGrid: 0
+  GridSize: {x: 1, y: 1, z: 1}
+  EnableGridMotionLock: 0
+  LockBoxMin: {x: 0, y: 0, z: 0}
+  LockBoxMax: {x: 0, y: 0, z: 0}
+  GridSpacing: {x: 1, y: 1, z: 1}
+  OverrideMaterial: {fileID: 2100000, guid: 8bf6c5ec3f4f6ba40ac1dea20a930bb8, type: 2}
+  SpawnWithZeroTime: 0
+  CycleTime: 14
+  SpeedVariance: 0
+  SpeedOffset: 0
+  Location:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.2831649
+      outSlope: 1.2831649
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.41922802
+      value: 0.53793865
+      inSlope: 1.0393817
+      outSlope: 1.0393817
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.79559857
+      outSlope: 0.79559857
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DirectionOfMotion: {x: -200, y: 0, z: 0}
+  Rotation:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AxisOfRotation: {x: 0, y: 1, z: 0}
+  RotationScale: 360
+  Scale:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.85
+      inSlope: 0.31088427
+      outSlope: 0.31088427
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07161401
+    - serializedVersion: 3
+      time: 0.75636965
+      value: 1.02
+      inSlope: 0.0028523924
+      outSlope: 0.0028523924
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.91448826
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0820915
+      outSlope: -0.0820915
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ScaleFactor: {x: 650, y: 893, z: 900}
+  Color:
+    serializedVersion: 2
+    key0: {r: 0.88616, g: 0, b: 0.9647059, a: 0}
+    key1: {r: 0.9647059, g: 0.28839463, b: 0, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 1}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 10601
+    atime2: 61102
+    atime3: 65535
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 4
+--- !u!1 &1369050121464914805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369050121464914810}
+  - component: {fileID: 7608542467998340605}
+  m_Layer: 0
+  m_Name: MTA_VaporwaveSunTop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1369050121464914810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369050121464914805}
+  m_LocalRotation: {x: -0.00000032151462, y: -0.0000002682209, z: 0.70710677, w: 0.7071069}
+  m_LocalPosition: {x: 0, y: 165, z: -1500}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1369050120037719545}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &7608542467998340605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369050121464914805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3092ea9c57c07e74b83945a5ed657a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisplayMesh: {fileID: 919132149155446097, guid: 1253b1f2c65c5924b8faadcfc0acaf59, type: 3}
+  NumberToSpawn: 3
+  SpawnOnGrid: 0
+  GridSize: {x: 1, y: 1, z: 1}
+  EnableGridMotionLock: 0
+  LockBoxMin: {x: 0, y: 0, z: 0}
+  LockBoxMax: {x: 0, y: 0, z: 0}
+  GridSpacing: {x: 1, y: 1, z: 1}
+  OverrideMaterial: {fileID: 2100000, guid: 8bf6c5ec3f4f6ba40ac1dea20a930bb8, type: 2}
+  SpawnWithZeroTime: 0
+  CycleTime: 2
+  SpeedVariance: 0
+  SpeedOffset: 0
+  Location:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DirectionOfMotion: {x: 0, y: 0, z: 0}
+  Rotation:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AxisOfRotation: {x: 0, y: 0, z: 0}
+  RotationScale: 0
+  Scale:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ScaleFactor: {x: 800, y: 900, z: 900}
+  Color:
+    serializedVersion: 2
+    key0: {r: 0.96470594, g: 0.4156863, b: 0, a: 1}
+    key1: {r: 0.96470594, g: 0.4156863, b: 0, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 1}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 33539
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 3
+--- !u!1 &1369050121544866630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369050121544866631}
+  - component: {fileID: 7056082904841528313}
+  m_Layer: 0
+  m_Name: MTA_VaporwaveSunTrail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1369050121544866631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369050121544866630}
+  m_LocalRotation: {x: 0.00000026822005, y: -0.00000032151542, z: 0.707109, w: -0.7071047}
+  m_LocalPosition: {x: 0, y: 20, z: -1500}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1369050120037719545}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
+--- !u!114 &7056082904841528313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369050121544866630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3092ea9c57c07e74b83945a5ed657a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisplayMesh: {fileID: 919132149155446097, guid: 73f613a1dd919fe41941317a8ac9328f, type: 3}
+  NumberToSpawn: 5
+  SpawnOnGrid: 0
+  GridSize: {x: 1, y: 1, z: 1}
+  EnableGridMotionLock: 0
+  LockBoxMin: {x: 0, y: 0, z: 0}
+  LockBoxMax: {x: 0, y: 0, z: 0}
+  GridSpacing: {x: 1, y: 1, z: 1}
+  OverrideMaterial: {fileID: 2100000, guid: 8bf6c5ec3f4f6ba40ac1dea20a930bb8, type: 2}
+  SpawnWithZeroTime: 0
+  CycleTime: 14
+  SpeedVariance: 0
+  SpeedOffset: 0
+  Location:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.2831649
+      outSlope: 1.2831649
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.41922802
+      value: 0.53793865
+      inSlope: 1.0393817
+      outSlope: 1.0393817
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.79559857
+      outSlope: 0.79559857
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DirectionOfMotion: {x: -200, y: 0, z: 0}
+  Rotation:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AxisOfRotation: {x: 0, y: 1, z: 0}
+  RotationScale: 360
+  Scale:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.85
+      inSlope: 0.31088427
+      outSlope: 0.31088427
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07161401
+    - serializedVersion: 3
+      time: 0.75636965
+      value: 1.02
+      inSlope: 0.0028523924
+      outSlope: 0.0028523924
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.91448826
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0820915
+      outSlope: -0.0820915
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ScaleFactor: {x: 650, y: 893, z: 900}
+  Color:
+    serializedVersion: 2
+    key0: {r: 0.88616, g: 0, b: 0.9647059, a: 0}
+    key1: {r: 0.9647059, g: 0.28839463, b: 0, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 1}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 10601
+    atime2: 61102
+    atime3: 65535
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 4

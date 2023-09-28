@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 96b5b56bf64233e40a93c808abf3507c
+timeCreated: 1541496912
+licenseType: Pro
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _TextureSample1: {instanceID: 0}
+  - _InnerSky: {instanceID: 0}
+  - _TextureSample0: {instanceID: 0}
+  - _texcoord: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

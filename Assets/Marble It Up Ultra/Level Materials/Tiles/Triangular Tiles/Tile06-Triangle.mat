@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Tile06-Triangle
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _WORLDSPACE_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: e119539bde02a964297e4a28686dfd5d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 1cd999043b560d946a7c76911227907b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 2800000, guid: 0042641f643a414469564b440319568e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicTex:
+        m_Texture: {fileID: 2800000, guid: 3b35bb7c84e36f642abc2c24e74f760e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTexture:
+        m_Texture: {fileID: 2800000, guid: 848521208791cba408ee3f070ca9c372, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTex:
+        m_Texture: {fileID: 2800000, guid: e119539bde02a964297e4a28686dfd5d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OverlayTex:
+        m_Texture: {fileID: 2800000, guid: a44dedba873af4c4887d2c32dec71874, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 0.9
+    - _Glossiness: 0.9
+    - _GlossyReflections: 1
+    - _GridEdgeOffset: 1
+    - _GridEdgeScale: 100
+    - _GridEdgeTexelOffsetX: 0
+    - _GridEdgeTexelOffsetY: 0
+    - _GridRadius: 0.327
+    - _GridScale: 0.242
+    - _MetalFactor: 1
+    - _Metallic: 0.2
+    - _Mode: 0
+    - _NoiseContrast: 0.76
+    - _OcclusionStrength: 1
+    - _OverlayFactor: 1
+    - _Parallax: 0.02
+    - _ScaleA: 1
+    - _ScaleB: 1
+    - _ScaleC: 1
+    - _ScaleD: 1
+    - _ScaleE: 1
+    - _Shininess: 0.2
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _WorldSpace: 1
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorDarkA: {r: 0.2156862, g: 0.74509805, b: 0.3765616, a: 1}
+    - _ColorDarkB: {r: 0.12428797, g: 0.43637046, b: 0.46226412, a: 1}
+    - _ColorGrid: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
+    - _ColorLightA: {r: 0.20754713, g: 0.8301887, b: 0.82096434, a: 1}
+    - _ColorLightB: {r: 0.15797433, g: 0.39923853, b: 0.4716981, a: 1}
+    - _ColorOverlayDark: {r: 0.90588236, g: 0.90588236, b: 0.90588236, a: 1}
+    - _ColorOverlayLight: {r: 0.90588236, g: 0.90588236, b: 0.90588236, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
