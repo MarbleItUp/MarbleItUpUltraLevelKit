@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 46045747492379225}
   - component: {fileID: 1095427704859732027}
-  - component: {fileID: 1638430731436584545}
   m_Layer: 0
   m_Name: LevelTiming
   m_TagString: Untagged
@@ -48,24 +47,3 @@ MonoBehaviour:
   GoldTime: 30
   SilverTime: 60
   Author: 
---- !u!114 &1638430731436584545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9156625903783567090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6dc3414846166f468c10679ee073fcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GravityMult: 1
-  JumpForceMult: 1
-  BounceMult: 1
-  FrictionMult: 1
-  RollForceMult: {x: 1, y: 1}
-  AirForceMult: {x: 1, y: 1}
-  ScaleMult: 1
-  CanBlast: 0
-  AirJumps: 0
