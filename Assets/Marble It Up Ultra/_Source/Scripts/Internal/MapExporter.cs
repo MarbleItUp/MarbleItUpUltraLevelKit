@@ -96,6 +96,11 @@ public class MapExporter : EditorWindow
         if (FindObjectsOfType<LevelTiming>().Length != 1)
             LevelSerializer.failCause = "Level needs one LevelTiming object!";
 
+        // Note: You CAN export levels with more, and they will run, but we take no responsibility for their
+        // correct functioning.
+        if (FindObjectsOfType<ElevatorMover>().Length > 127)
+            LevelSerializer.failCause = "Levels can only have 128 movers maximum.";
+
         if (MapComponents.GetNumOf("LevelBounds") != 1)
         {
             LevelSerializer.failCause = "Level needs one LevelBounds volume!";
