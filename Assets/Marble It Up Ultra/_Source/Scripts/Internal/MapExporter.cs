@@ -99,7 +99,7 @@ public class MapExporter : EditorWindow
         // Note: You CAN export levels with more, and they will run, but we take no responsibility for their
         // correct functioning.
         if (FindObjectsOfType<ElevatorMover>().Length > 127)
-            LevelSerializer.failCause = "Levels can only have 128 movers maximum.";
+            LevelSerializer.failCause = "Levels can only have 127 movers maximum.";
 
         if (MapComponents.GetNumOf("LevelBounds") != 1)
         {
